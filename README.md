@@ -5,7 +5,7 @@ Proyecto final para la asignatura de Programación.
 
 ## Prototipo Interactivo
 Puedes consultar el diseño completo y el prototipo funcional en el siguiente enlace:
-👉 https://www.figma.com/design/YmSj5F8fhFY8r8YTP63SRG/Actividad-06-Prototipo?node-id=0-1&t=yt6cCPw93LSG8Rxb-1
+https://www.figma.com/design/YmSj5F8fhFY8r8YTP63SRG/Actividad-06-Prototipo?node-id=0-1&t=yt6cCPw93LSG8Rxb-1
 
 ## Módulos Diseñados
 - *Acceso:* Login y Registro de usuarios.
