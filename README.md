@@ -1,18 +1,26 @@
-# Proyecto-Final-Tienda
-# nodo — Plataforma E-Commerce
+# nodo — Login y catálogo
 
-Proyecto final para la asignatura de Programación. 
+Avance del proyecto de Programación. En esta entrega se trabaja únicamente el acceso de usuarios y el catálogo de productos.
 
-## Prototipo Interactivo
-Puedes consultar el diseño completo y el prototipo funcional en el siguiente enlace:
-https://www.figma.com/design/YmSj5F8fhFY8r8YTP63SRG/Actividad-06-Prototipo?node-id=0-1&t=yt6cCPw93LSG8Rxb-1
+## Avance 1 — Acceso de usuarios
 
-## Módulos Diseñados
-- *Acceso:* Login y Registro de usuarios.
-- *Cliente:* Catálogo con filtros, Historial de Compras y Lista de Favoritos.
-- *Administrador:* Dashboard de Gestión de Inventario (con búsqueda por ID y edición) y Formulario de Registro de Productos.
+- Estructura base del proyecto JavaFX.
+- Modelo `Usuario` con rol de cliente o administrador.
+- Usuarios guardados en memoria con `Nodo` y `ListaEnlazada`.
+- Inicio de sesión con validaciones.
+- Sesión del usuario y cierre de sesión.
+- Cuentas de prueba:
+  - Cliente: `lucia.martin@email.com` / `123456`
+  - Administrador: `admin@nodo.com` / `admin123`
 
-## Integrantes
-- Julio Cesar Vidal Herazo
-- Camilo Andrés Palmera Fernández
-- Juan Andrés Torres Peña
+## Requisitos
+
+- JDK 25
+- Apache Maven 3.9+
+- NetBeans 27 (recomendado) y Scene Builder 26
+
+## Cómo ejecutar
+
+```bash
+mvn javafx:run
+```

@@ -1,0 +1,60 @@
+package com.nodo.tienda.controladores;
+
+import com.nodo.tienda.App;
+import com.nodo.tienda.datos.RepositorioUsuarios;
+import com.nodo.tienda.modelo.Usuario;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+
+
+public class LoginControlador {
+
+    @FXML
+    private TextField correo;
+
+    @FXML
+    private PasswordField contrasena;
+
+    @FXML
+    private Label mensaje;
+
+    @FXML
+    private void onLogin() {
+        String correoIngresado = correo.getText() == null ? "" : correo.getText().trim();
+        String contrasenaIngresada = contrasena.getText() == null ? "" : contrasena.getText();
+
+        if (correoIngresado.isEmpty() || contrasenaIngresada.isEmpty()) {
+            mostrarMensaje("Completa el correo y la contraseña.");
+            return;
+        }
+
+        Usuario usuario = RepositorioUsuarios.autenticar(correoIngresado, contrasenaIngresada);
+
+        if (usuario == null) {
+            mostrarMensaje("Usuario o contraseña incorrectos. Inténtalo de nuevo.");
+            return;
+        }
+
+        RepositorioUsuarios.iniciarSesion(usuario);
+        App.irA("catalogo");
+    }
+
+    @FXML
+    private void onRegistrar() {
+        mostrarMensaje("El registro estará disponible en el próximo avance.");
+    }
+
+    @FXML
+    private void onOlvidar() {
+        mostrarMensaje("Contacta al administrador de la tienda para recuperar tu cuenta.");
+    }
+
+    private void mostrarMensaje(String texto) {
+        mensaje.setText(texto);
+        mensaje.setVisible(true);
+        mensaje.setManaged(true);
+    }
+}
