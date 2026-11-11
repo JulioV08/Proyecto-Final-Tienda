@@ -44,7 +44,7 @@ public class LoginControlador {
 
     @FXML
     private void onRegistrar() {
-        mostrarMensaje("El registro estará disponible en el próximo avance.");
+        App.irA("registro");
     }
 
     @FXML
