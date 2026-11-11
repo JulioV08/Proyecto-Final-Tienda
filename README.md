@@ -36,6 +36,7 @@ mvn javafx:run
 | Fecha | Avance | Descripción |
 |---|---|---|
 | 10/11/2026 | Avance 1 | Acceso de usuarios: login, registro y sesión. |
+| 11/11/2026 | Avance 2 | Catálogo de productos con tarjetas y precios en pesos colombianos. |
 
 El historial completo de commits está disponible en:
 https://github.com/JulioV08/Proyecto-Final-Tienda/commits/main
@@ -46,4 +47,13 @@ https://github.com/JulioV08/Proyecto-Final-Tienda/commits/main
 - Cuentas de prueba:
   - Cliente: `lucia.martin@email.com` / `123456`
   - Administrador: `admin@nodo.com` / `admin123`
+
+## Avance 2 — Catálogo de productos
+- Catálogo con encabezado, buscador, filtros visuales y tarjetas de producto.
+- Al iniciar sesión, el catálogo se abre directamente.
+- Precios en pesos colombianos, categoría, stock y calificación.
+- Los productos se guardan en memoria con `NodoProducto` y `ListaProductos`.
+- `Nodo` y `ListaEnlazada` quedaron específicos para `Usuario`.
+- Se agregó `Launcher` para ejecutar el proyecto desde NetBeans con el botón Run.
+- El acceso, el registro y la sesión siguen funcionando igual.
 

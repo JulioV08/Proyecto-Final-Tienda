@@ -8,7 +8,7 @@ import com.nodo.tienda.modelo.Usuario;
  */
 public class RepositorioUsuarios {
 
-    private static final ListaEnlazada<Usuario> usuarios = new ListaEnlazada<>();
+    private static final ListaEnlazada usuarios = new ListaEnlazada();
 
     static {
         cargarDatosDePrueba();

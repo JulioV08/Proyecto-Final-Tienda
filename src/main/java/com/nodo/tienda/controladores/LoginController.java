@@ -43,7 +43,7 @@ public class LoginController {
         }
 
         Sesion.iniciar(usuario);
-        App.irA("principal");
+        App.irA("catalogo");
     }
 
     @FXML

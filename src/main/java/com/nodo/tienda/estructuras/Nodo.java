@@ -1,31 +1,29 @@
 package com.nodo.tienda.estructuras;
 
+import com.nodo.tienda.modelo.Usuario;
+
 /**
- * Nodo genérico usado por las estructuras enlazadas del proyecto.
+ * Nodo usado por la lista de usuarios.
  */
-public class Nodo<T> {
+public class Nodo {
 
-    private T dato;
-    private Nodo<T> siguiente;
+    private Usuario dato;
+    private Nodo siguiente;
 
-    public Nodo(T dato) {
+    public Nodo(Usuario dato) {
         this.dato = dato;
         this.siguiente = null;
     }
 
-    public T getDato() {
+    public Usuario getDato() {
         return dato;
     }
 
-    public void setDato(T dato) {
-        this.dato = dato;
-    }
-
-    public Nodo<T> getSiguiente() {
+    public Nodo getSiguiente() {
         return siguiente;
     }
 
-    public void setSiguiente(Nodo<T> siguiente) {
+    public void setSiguiente(Nodo siguiente) {
         this.siguiente = siguiente;
     }
 }

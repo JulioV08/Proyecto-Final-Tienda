@@ -32,6 +32,11 @@ public class PrincipalController {
     }
 
     @FXML
+    private void onIrAlCatalogo() {
+        App.irA("catalogo");
+    }
+
+    @FXML
     private void onCerrarSesion() {
         Sesion.cerrar();
         App.irA("login");

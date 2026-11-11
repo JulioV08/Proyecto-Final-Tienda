@@ -112,7 +112,32 @@
                     <Color red="0.4196" green="0.4471" blue="0.5020" />
                 </textFill>
             </Label>
-            <Label text="Avance 1 · Módulo de acceso de usuarios">
+            <Button onAction="#onIrAlCatalogo" text="Ver catálogo">
+                <background>
+                    <Background>
+                        <fills>
+                            <BackgroundFill>
+                                <fill>
+                                    <Color red="0.0667" green="0.0941" blue="0.1529" />
+                                </fill>
+                            </BackgroundFill>
+                        </fills>
+                    </Background>
+                </background>
+                <padding>
+                    <Insets top="10.0" right="18.0" bottom="10.0" left="18.0" />
+                </padding>
+                <font>
+                    <Font name="Segoe UI Bold" size="13.0" />
+                </font>
+                <textFill>
+                    <Color red="1.0" green="1.0" blue="1.0" />
+                </textFill>
+                <VBox.margin>
+                    <Insets top="10.0" />
+                </VBox.margin>
+            </Button>
+            <Label text="Avance 2 · Acceso y catálogo de productos">
                 <font>
                     <Font name="Segoe UI" size="11.0" />
                 </font>
