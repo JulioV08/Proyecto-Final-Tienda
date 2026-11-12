@@ -21,6 +21,14 @@ Avance del proyecto de Programación. En esta entrega se trabaja únicamente el 
 - Las cuentas nuevas se agregan a la `ListaEnlazada` de usuarios.
 - Al crear la cuenta se limpian los campos y se muestra el mensaje de confirmación.
 
+## Avance 3 — Modelo de producto y catálogo inicial
+
+- Modelo `Producto` con nombre, categoría, precio, stock, ícono, descripción y estado destacado.
+- Productos guardados en memoria con `NodoProducto` y `ListaProductos`.
+- IDs automáticos y consecutivos para cada producto.
+- Catálogo inicial en forma de lista con los datos principales.
+- Seis productos de prueba de distintas categorías.
+
 ## Requisitos
 
 - JDK 25
