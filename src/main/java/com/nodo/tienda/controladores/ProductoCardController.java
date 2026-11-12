@@ -28,7 +28,14 @@ public class ProductoCardController {
     @FXML
     private Label stock;
 
-    public void setProducto(Producto producto) {
+    private Producto producto;
+
+    private CatalogoController catalogo;
+
+    public void setProducto(Producto producto, CatalogoController catalogo) {
+        this.producto = producto;
+        this.catalogo = catalogo;
+
         icono.setText(producto.getIcono());
         categoria.setText(producto.getCategoria().toUpperCase());
         nombre.setText(producto.getNombre());
@@ -37,5 +44,12 @@ public class ProductoCardController {
 
         etiqueta.setVisible(producto.isDestacado());
         etiqueta.setManaged(producto.isDestacado());
+    }
+
+    @FXML
+    private void onAgregar() {
+        if (producto != null && catalogo != null) {
+            catalogo.agregarAlCarrito(producto);
+        }
     }
 }

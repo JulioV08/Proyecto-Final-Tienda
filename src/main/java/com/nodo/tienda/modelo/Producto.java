@@ -51,4 +51,9 @@ public class Producto {
     public boolean isDestacado() {
         return destacado;
     }
+
+    @Override
+    public String toString() {
+        return nombre + " · " + getPrecioTexto();
+    }
 }

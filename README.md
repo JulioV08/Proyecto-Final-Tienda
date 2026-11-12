@@ -37,6 +37,7 @@ mvn javafx:run
 |---|---|---|
 | 10/11/2026 | Avance 1 | Acceso de usuarios: login, registro y sesión. |
 | 11/11/2026 | Avance 2 | Catálogo de productos con tarjetas y precios en pesos colombianos. |
+| 12/11/2026 | Avance 3 | Catálogo funcional, carrito con `Cola` circular e historial con `Pila`. |
 
 El historial completo de commits está disponible en:
 https://github.com/JulioV08/Proyecto-Final-Tienda/commits/main
@@ -56,4 +57,11 @@ https://github.com/JulioV08/Proyecto-Final-Tienda/commits/main
 - `Nodo` y `ListaEnlazada` quedaron específicos para `Usuario`.
 - Se agregó `Launcher` para ejecutar el proyecto desde NetBeans con el botón Run.
 - El acceso, el registro y la sesión siguen funcionando igual.
+
+## Avance 3 — Catálogo funcional, carrito y compras
+- Filtros por categoría, precio, disponibilidad y búsqueda.
+- Orden por precio y contador de resultados.
+- Carrito con `Cola` circular, contador en el encabezado y total en pesos.
+- `Mis compras` con `Pila`; cada compra finalizada queda registrada.
+- El carrito y el historial se guardan en memoria, igual que los usuarios y los productos.
 

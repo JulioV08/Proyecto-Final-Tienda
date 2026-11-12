@@ -167,7 +167,7 @@
             </textFill>
         </Label>
         <Region VBox.vgrow="ALWAYS" />
-        <Button text="Añadir al carrito"
+        <Button text="Añadir al carrito" onAction="#onAgregar"
                 maxWidth="1.7976931348623157E308">
             <background>
                 <Background>

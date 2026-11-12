@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.Background?>
+<?import javafx.scene.layout.BackgroundFill?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.nodo.tienda.controladores.CarritoController"
+            prefWidth="980.0" prefHeight="700.0">
+    <background>
+        <Background>
+            <fills>
+                <BackgroundFill>
+                    <fill>
+                        <Color red="0.9725" green="0.9804" blue="0.9882" />
+                    </fill>
+                </BackgroundFill>
+            </fills>
+        </Background>
+    </background>
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12.0">
+            <background>
+                <Background>
+                    <fills>
+                        <BackgroundFill>
+                            <fill>
+                                <Color red="0.0588" green="0.0902" blue="0.1647" />
+                            </fill>
+                        </BackgroundFill>
+                    </fills>
+                </Background>
+            </background>
+            <padding>
+                <Insets top="12.0" right="22.0" bottom="12.0" left="22.0" />
+            </padding>
+            <Label text="nodo">
+                <background>
+                    <Background>
+                        <fills>
+                            <BackgroundFill>
+                                <fill>
+                                    <Color red="0.9373" green="0.2667" blue="0.2667" />
+                                </fill>
+                            </BackgroundFill>
+                        </fills>
+                    </Background>
+                </background>
+                <padding>
+                    <Insets top="7.0" right="11.0" bottom="7.0" left="11.0" />
+                </padding>
+                <font>
+                    <Font name="Segoe UI Bold" size="15.0" />
+                </font>
+                <textFill>
+                    <Color red="1.0" green="1.0" blue="1.0" />
+                </textFill>
+            </Label>
+            <Label text="Carrito">
+                <font>
+                    <Font name="Segoe UI Bold" size="13.0" />
+                </font>
+                <textFill>
+                    <Color red="1.0" green="1.0" blue="1.0" />
+                </textFill>
+            </Label>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button text="Seguir comprando" onAction="#onVolver">
+                <background>
+                    <Background>
+                        <fills>
+                            <BackgroundFill>
+                                <fill>
+                                    <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                </fill>
+                            </BackgroundFill>
+                        </fills>
+                    </Background>
+                </background>
+                <padding>
+                    <Insets top="0.0" right="0.0" bottom="0.0" left="0.0" />
+                </padding>
+                <font>
+                    <Font name="Segoe UI Bold" size="10.0" />
+                </font>
+                <textFill>
+                    <Color red="1.0" green="1.0" blue="1.0" />
+                </textFill>
+            </Button>
+        </HBox>
+    </top>
+    <center>
+        <VBox spacing="12.0">
+            <padding>
+                <Insets top="24.0" right="24.0" bottom="24.0" left="24.0" />
+            </padding>
+            <Label text="Tu carrito">
+                <font>
+                    <Font name="Segoe UI Bold" size="22.0" />
+                </font>
+                <textFill>
+                    <Color red="0.0588" green="0.0902" blue="0.1647" />
+                </textFill>
+            </Label>
+            <Label text="Revisa tus productos y finaliza tu compra.">
+                <font>
+                    <Font name="Segoe UI" size="11.0" />
+                </font>
+                <textFill>
+                    <Color red="0.3922" green="0.4549" blue="0.5451" />
+                </textFill>
+            </Label>
+            <ListView fx:id="lista" VBox.vgrow="ALWAYS">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Auriculares Aura · $89.900" />
+                        <String fx:value="Ratón inalámbrico Trazo · $34.900" />
+                    </FXCollections>
+                </items>
+            </ListView>
+            <HBox alignment="CENTER_RIGHT">
+                <Label fx:id="total" text="Total: $124.800">
+                    <font>
+                        <Font name="Segoe UI Bold" size="18.0" />
+                    </font>
+                    <textFill>
+                        <Color red="0.0588" green="0.0902" blue="0.1647" />
+                    </textFill>
+                </Label>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+                <Button text="Vaciar carrito" onAction="#onVaciar">
+                    <background>
+                        <Background>
+                            <fills>
+                                <BackgroundFill>
+                                    <fill>
+                                        <Color red="0.8863" green="0.9098" blue="0.9412" />
+                                    </fill>
+                                </BackgroundFill>
+                            </fills>
+                        </Background>
+                    </background>
+                    <padding>
+                        <Insets top="8.0" right="12.0" bottom="8.0" left="12.0" />
+                    </padding>
+                    <font>
+                        <Font name="Segoe UI Bold" size="9.0" />
+                    </font>
+                    <textFill>
+                        <Color red="0.0588" green="0.0902" blue="0.1647" />
+                    </textFill>
+                </Button>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button text="Finalizar compra" onAction="#onFinalizar">
+                    <background>
+                        <Background>
+                            <fills>
+                                <BackgroundFill>
+                                    <fill>
+                                        <Color red="0.9373" green="0.2667" blue="0.2667" />
+                                    </fill>
+                                </BackgroundFill>
+                            </fills>
+                        </Background>
+                    </background>
+                    <padding>
+                        <Insets top="8.0" right="14.0" bottom="8.0" left="14.0" />
+                    </padding>
+                    <font>
+                        <Font name="Segoe UI Bold" size="10.0" />
+                    </font>
+                    <textFill>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                    </textFill>
+                </Button>
+            </HBox>
+            <Label fx:id="mensaje" text=" ">
+                <font>
+                    <Font name="Segoe UI" size="10.0" />
+                </font>
+                <textFill>
+                    <Color red="0.9373" green="0.2667" blue="0.2667" />
+                </textFill>
+            </Label>
+        </VBox>
+    </center>
+</BorderPane>
