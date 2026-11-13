@@ -29,6 +29,14 @@ Avance del proyecto de Programación. En esta entrega se trabaja únicamente el 
 - Catálogo inicial en forma de lista con los datos principales.
 - Seis productos de prueba de distintas categorías.
 
+## Avance 4 — Catálogo visual
+
+- Encabezado con marca, buscador, usuario y rol.
+- Tarjetas de producto con ícono, categoría, nombre, precio, stock y etiqueta de destacado.
+- Tarjetas construidas con `producto.fxml` y cargadas dinámicamente dentro de un `FlowPane`.
+- Distribución visual con filtros, recomendados y búsquedas recientes.
+- Vista de detalle rápida para consultar la descripción del producto.
+
 ## Requisitos
 
 - JDK 25

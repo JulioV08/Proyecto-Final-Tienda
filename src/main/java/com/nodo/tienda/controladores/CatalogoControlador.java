@@ -1,5 +1,7 @@
 package com.nodo.tienda.controladores;
 
+import java.io.IOException;
+
 import com.nodo.tienda.App;
 import com.nodo.tienda.datos.RepositorioProductos;
 import com.nodo.tienda.datos.RepositorioUsuarios;
@@ -7,8 +9,16 @@ import com.nodo.tienda.modelo.Producto;
 import com.nodo.tienda.modelo.Usuario;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.FlowPane;
 
 
 public class CatalogoControlador {
@@ -20,7 +30,34 @@ public class CatalogoControlador {
     private Label rol;
 
     @FXML
-    private ListView<String> lista;
+    private Label contador;
+
+    @FXML
+    private Label mensaje;
+
+    @FXML
+    private Label recomendado;
+
+    @FXML
+    private FlowPane contenedorProductos;
+
+    @FXML
+    private ComboBox<String> orden;
+
+    @FXML
+    private TextField busqueda;
+
+    @FXML
+    private ListView<String> categorias;
+
+    @FXML
+    private ListView<String> busquedas;
+
+    @FXML
+    private Slider precio;
+
+    @FXML
+    private CheckBox soloDisponibles;
 
     @FXML
     public void initialize() {
@@ -33,13 +70,55 @@ public class CatalogoControlador {
             rol.setText(usuario.getRol());
         }
 
+        orden.getItems().addAll("Recomendados", "Precio: menor a mayor", "Precio: mayor a menor");
+        orden.setValue("Recomendados");
+        categorias.getSelectionModel().selectFirst();
+        busquedas.setPlaceholder(new Label("Aún no hay búsquedas."));
+        recomendado.setText("Disponible en el próximo avance.");
+        cargarProductos();
+    }
+
+    private void cargarProductos() {
+        contenedorProductos.getChildren().clear();
         for (int i = 0; i < RepositorioProductos.tamanio(); i++) {
-            Producto producto = RepositorioProductos.obtener(i);
-            lista.getItems().add(producto.getIcono() + "  " + producto.getNombre()
-                    + " · " + producto.getCategoria()
-                    + " · " + producto.getPrecioTexto()
-                    + " · Stock: " + producto.getStock());
+            cargarProducto(RepositorioProductos.obtener(i));
         }
+        contador.setText(RepositorioProductos.tamanio() + " productos para ti");
+    }
+
+    private void cargarProducto(Producto producto) {
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("vistas/producto.fxml"));
+            Parent tarjeta = loader.load();
+            TarjetaControlador controlador = loader.getController();
+            controlador.setProducto(producto, this);
+            contenedorProductos.getChildren().add(tarjeta);
+        } catch (IOException e) {
+            throw new IllegalStateException("No se pudo cargar la tarjeta del producto", e);
+        }
+    }
+
+    public void verDetalle(Producto producto) {
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle(producto.getNombre());
+        alerta.setHeaderText(producto.getCategoria() + " · " + producto.getPrecioTexto());
+        alerta.setContentText(producto.getDescripcion() + "\n\nStock: " + producto.getStock());
+        alerta.showAndWait();
+    }
+
+    @FXML
+    private void onBuscar() {
+        cargarProductos();
+    }
+
+    @FXML
+    private void onSiguienteRecomendado() {
+        recomendado.setText("Disponible en el próximo avance.");
+    }
+
+    @FXML
+    private void onLimpiarBusquedas() {
+        busquedas.getItems().clear();
     }
 
     @FXML
