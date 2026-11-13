@@ -1,8 +1,10 @@
 package com.nodo.tienda.controladores;
 
+import com.nodo.tienda.datos.RepositorioDeseos;
 import com.nodo.tienda.modelo.Producto;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 /**
@@ -28,6 +30,9 @@ public class ProductoCardController {
     @FXML
     private Label stock;
 
+    @FXML
+    private Button favorito;
+
     private Producto producto;
 
     private CatalogoController catalogo;
@@ -44,6 +49,21 @@ public class ProductoCardController {
 
         etiqueta.setVisible(producto.isDestacado());
         etiqueta.setManaged(producto.isDestacado());
+        actualizarFavorito();
+    }
+
+    private void actualizarFavorito() {
+        if (favorito != null && producto != null) {
+            favorito.setText(RepositorioDeseos.contiene(producto) ? "♥" : "♡");
+        }
+    }
+
+    @FXML
+    private void onFavorito() {
+        if (producto != null && catalogo != null) {
+            catalogo.alternarDeseo(producto);
+            actualizarFavorito();
+        }
     }
 
     @FXML

@@ -9,7 +9,7 @@ https://www.figma.com/design/YmSj5F8fhFY8r8YTP63SRG/Actividad-06-Prototipo?node-
 
 ## Módulos Diseñados
 - *Acceso:* Login y Registro de usuarios.
-- *Cliente:* Catálogo con filtros, Historial de Compras y Lista de Favoritos.
+- *Cliente:* Catálogo con filtros, carrito, Historial de Compras y Lista de deseos.
 - *Administrador:* Dashboard de Gestión de Inventario (con búsqueda por ID y edición) y Formulario de Registro de Productos.
 
 ## Integrantes
@@ -38,6 +38,7 @@ mvn javafx:run
 | 10/11/2026 | Avance 1 | Acceso de usuarios: login, registro y sesión. |
 | 11/11/2026 | Avance 2 | Catálogo de productos con tarjetas y precios en pesos colombianos. |
 | 12/11/2026 | Avance 3 | Catálogo funcional, carrito con `Cola` circular e historial con `Pila`. |
+| 13/11/2026 | Avance 4 | Lista de deseos con lista enlazada propia. |
 
 El historial completo de commits está disponible en:
 https://github.com/JulioV08/Proyecto-Final-Tienda/commits/main
@@ -64,4 +65,11 @@ https://github.com/JulioV08/Proyecto-Final-Tienda/commits/main
 - Carrito con `Cola` circular, contador en el encabezado y total en pesos.
 - `Mis compras` con `Pila`; cada compra finalizada queda registrada.
 - El carrito y el historial se guardan en memoria, igual que los usuarios y los productos.
+
+## Avance 4 — Lista de deseos
+- Cada tarjeta del catálogo tiene un corazón para guardar o quitar el producto.
+- La vista `Lista de deseos` muestra los productos guardados y permite quitar el seleccionado.
+- La lista se guarda en memoria con `NodoProducto` y `ListaDeseos`.
+- La vista incluye filas de muestra en el FXML para revisar el diseño manual en Scene Builder.
+- Al ejecutar, esas filas se reemplazan por los productos guardados realmente.
 

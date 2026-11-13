@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.nodo.tienda.App;
 import com.nodo.tienda.datos.Carrito;
+import com.nodo.tienda.datos.RepositorioDeseos;
 import com.nodo.tienda.datos.RepositorioProductos;
 import com.nodo.tienda.datos.Sesion;
 import com.nodo.tienda.modelo.Producto;
@@ -54,6 +55,9 @@ public class CatalogoController {
     private Button carrito;
 
     @FXML
+    private Button deseos;
+
+    @FXML
     public void initialize() {
         Usuario usuario = Sesion.getUsuario();
         if (usuario != null) {
@@ -64,6 +68,7 @@ public class CatalogoController {
 
         prepararFiltros();
         actualizarCarrito();
+        actualizarDeseos();
         aplicarFiltros();
     }
 
@@ -162,6 +167,20 @@ public class CatalogoController {
         carrito.setText("🛒 " + Carrito.tamanio());
     }
 
+    public void alternarDeseo(Producto producto) {
+        if (RepositorioDeseos.contiene(producto)) {
+            RepositorioDeseos.eliminar(producto);
+        } else {
+            RepositorioDeseos.agregar(producto);
+        }
+        actualizarDeseos();
+    }
+
+    private void actualizarDeseos() {
+        String corazon = RepositorioDeseos.tamanio() > 0 ? "♥" : "♡";
+        deseos.setText(corazon + " " + RepositorioDeseos.tamanio());
+    }
+
     @FXML
     private void onCarrito() {
         App.irA("carrito");
@@ -170,6 +189,11 @@ public class CatalogoController {
     @FXML
     private void onHistorial() {
         App.irA("historial");
+    }
+
+    @FXML
+    private void onDeseos() {
+        App.irA("deseos");
     }
 
     @FXML

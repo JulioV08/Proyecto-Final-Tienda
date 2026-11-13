@@ -106,7 +106,22 @@
                     <Insets top="8.0" right="8.0" bottom="8.0" left="8.0" />
                 </StackPane.margin>
             </Label>
-            <Label text="♡" StackPane.alignment="TOP_RIGHT">
+            <Button fx:id="favorito" onAction="#onFavorito" text="♡"
+                    StackPane.alignment="TOP_RIGHT">
+                <background>
+                    <Background>
+                        <fills>
+                            <BackgroundFill>
+                                <fill>
+                                    <Color red="1.0" green="1.0" blue="1.0" opacity="0.0" />
+                                </fill>
+                            </BackgroundFill>
+                        </fills>
+                    </Background>
+                </background>
+                <padding>
+                    <Insets top="0.0" right="0.0" bottom="0.0" left="0.0" />
+                </padding>
                 <font>
                     <Font name="Segoe UI" size="20.0" />
                 </font>
@@ -116,7 +131,7 @@
                 <StackPane.margin>
                     <Insets top="6.0" right="8.0" bottom="8.0" left="8.0" />
                 </StackPane.margin>
-            </Label>
+            </Button>
         </children>
     </StackPane>
     <VBox spacing="4.0" VBox.vgrow="ALWAYS">

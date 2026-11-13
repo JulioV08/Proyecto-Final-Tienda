@@ -100,14 +100,28 @@
                     </font>
                 </TextField>
                 <Region HBox.hgrow="ALWAYS" />
-                <Label text="♡">
+                <Button fx:id="deseos" onAction="#onDeseos" text="♡ 0">
+                    <background>
+                        <Background>
+                            <fills>
+                                <BackgroundFill>
+                                    <fill>
+                                        <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                    </fill>
+                                </BackgroundFill>
+                            </fills>
+                        </Background>
+                    </background>
+                    <padding>
+                        <Insets top="0.0" right="0.0" bottom="0.0" left="0.0" />
+                    </padding>
                     <font>
-                        <Font name="Segoe UI" size="22.0" />
+                        <Font name="Segoe UI" size="16.0" />
                     </font>
                     <textFill>
                         <Color red="1.0" green="1.0" blue="1.0" />
                     </textFill>
-                </Label>
+                </Button>
                 <Button fx:id="carrito" onAction="#onCarrito" text="🛒 0">
                     <background>
                         <Background>
@@ -199,14 +213,28 @@
                         <Color red="0.3922" green="0.4549" blue="0.5451" />
                     </textFill>
                 </Button>
-                <Label text="Lista de deseos">
+                <Button onAction="#onDeseos" text="Lista de deseos">
+                    <background>
+                        <Background>
+                            <fills>
+                                <BackgroundFill>
+                                    <fill>
+                                        <Color red="1.0" green="1.0" blue="1.0" />
+                                    </fill>
+                                </BackgroundFill>
+                            </fills>
+                        </Background>
+                    </background>
+                    <padding>
+                        <Insets top="0.0" right="0.0" bottom="0.0" left="0.0" />
+                    </padding>
                     <font>
                         <Font name="Segoe UI" size="11.0" />
                     </font>
                     <textFill>
                         <Color red="0.3922" green="0.4549" blue="0.5451" />
                     </textFill>
-                </Label>
+                </Button>
                 <Region HBox.hgrow="ALWAYS" />
                 <Label text="Envío gratis desde 150.000 COP">
                     <font>
