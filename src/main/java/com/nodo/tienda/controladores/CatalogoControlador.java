@@ -11,7 +11,6 @@ import com.nodo.tienda.modelo.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -99,11 +98,8 @@ public class CatalogoControlador {
     }
 
     public void verDetalle(Producto producto) {
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setTitle(producto.getNombre());
-        alerta.setHeaderText(producto.getCategoria() + " · " + producto.getPrecioTexto());
-        alerta.setContentText(producto.getDescripcion() + "\n\nStock: " + producto.getStock());
-        alerta.showAndWait();
+        DetalleControlador.seleccionar(producto);
+        App.irA("detalle");
     }
 
     @FXML

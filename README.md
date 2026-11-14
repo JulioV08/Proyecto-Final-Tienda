@@ -37,6 +37,14 @@ Avance del proyecto de Programación. En esta entrega se trabaja únicamente el 
 - Distribución visual con filtros, recomendados y búsquedas recientes.
 - Vista de detalle rápida para consultar la descripción del producto.
 
+## Avance 5 — Detalle del producto
+
+- Al seleccionar una tarjeta se abre la vista de detalle.
+- La vista muestra ícono, categoría, nombre, precio, stock y descripción.
+- La etiqueta de producto destacado solo aparece cuando corresponde.
+- El usuario puede volver al catálogo o cerrar sesión desde la vista.
+- La información se toma directamente del producto seleccionado en la `ListaProductos`.
+
 ## Requisitos
 
 - JDK 25
