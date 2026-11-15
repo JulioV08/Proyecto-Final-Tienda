@@ -45,6 +45,15 @@ Avance del proyecto de Programación. En esta entrega se trabaja únicamente el 
 - El usuario puede volver al catálogo o cerrar sesión desde la vista.
 - La información se toma directamente del producto seleccionado en la `ListaProductos`.
 
+## Avance 6 — Búsqueda y categorías
+
+- Búsqueda por nombre o categoría mientras se escribe.
+- Filtro por categoría desde una lista de opciones.
+- La búsqueda y la categoría se combinan para refinar el catálogo.
+- Contador de productos visibles.
+- Mensaje cuando no hay resultados.
+- El filtrado recorre la `ListaProductos` sin usar colecciones de Java.
+
 ## Requisitos
 
 - JDK 25

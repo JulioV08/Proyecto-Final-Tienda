@@ -74,15 +74,50 @@ public class CatalogoControlador {
         categorias.getSelectionModel().selectFirst();
         busquedas.setPlaceholder(new Label("Aún no hay búsquedas."));
         recomendado.setText("Disponible en el próximo avance.");
-        cargarProductos();
+
+        busqueda.textProperty().addListener((observable, anterior, nuevo) -> aplicarFiltros());
+        categorias.getSelectionModel().selectedItemProperty()
+                .addListener((observable, anterior, nuevo) -> aplicarFiltros());
+
+        aplicarFiltros();
     }
 
-    private void cargarProductos() {
-        contenedorProductos.getChildren().clear();
-        for (int i = 0; i < RepositorioProductos.tamanio(); i++) {
-            cargarProducto(RepositorioProductos.obtener(i));
+    private void aplicarFiltros() {
+        String categoria = categorias.getSelectionModel().getSelectedItem();
+        if (categoria == null) {
+            categoria = "Todas";
         }
-        contador.setText(RepositorioProductos.tamanio() + " productos para ti");
+        String texto = busqueda.getText() == null ? "" : busqueda.getText().trim().toLowerCase();
+
+        Producto[] visibles = new Producto[RepositorioProductos.tamanio()];
+        int cantidad = 0;
+        for (int i = 0; i < RepositorioProductos.tamanio(); i++) {
+            Producto producto = RepositorioProductos.obtener(i);
+            if (cumpleFiltros(producto, categoria, texto)) {
+                visibles[cantidad] = producto;
+                cantidad++;
+            }
+        }
+
+        contenedorProductos.getChildren().clear();
+        for (int i = 0; i < cantidad; i++) {
+            cargarProducto(visibles[i]);
+        }
+
+        contador.setText(cantidad + (cantidad == 1 ? " producto para ti" : " productos para ti"));
+        boolean vacio = cantidad == 0;
+        mensaje.setText(vacio ? "No encontramos productos con esos filtros." : "");
+        mensaje.setVisible(vacio);
+        mensaje.setManaged(vacio);
+    }
+
+    private boolean cumpleFiltros(Producto producto, String categoria, String texto) {
+        if (!categoria.equals("Todas") && !producto.getCategoria().equals(categoria)) {
+            return false;
+        }
+        return texto.isEmpty()
+                || producto.getNombre().toLowerCase().contains(texto)
+                || producto.getCategoria().toLowerCase().contains(texto);
     }
 
     private void cargarProducto(Producto producto) {
@@ -104,7 +139,7 @@ public class CatalogoControlador {
 
     @FXML
     private void onBuscar() {
-        cargarProductos();
+        aplicarFiltros();
     }
 
     @FXML
