@@ -76,6 +76,9 @@ public class CatalogoControlador {
         recomendado.setText("Disponible en el próximo avance.");
 
         busqueda.textProperty().addListener((observable, anterior, nuevo) -> aplicarFiltros());
+        precio.valueProperty().addListener((observable, anterior, nuevo) -> aplicarFiltros());
+        soloDisponibles.setOnAction(evento -> aplicarFiltros());
+        orden.setOnAction(evento -> aplicarFiltros());
         categorias.getSelectionModel().selectedItemProperty()
                 .addListener((observable, anterior, nuevo) -> aplicarFiltros());
 
@@ -99,6 +102,7 @@ public class CatalogoControlador {
             }
         }
 
+        ordenar(visibles, cantidad);
         contenedorProductos.getChildren().clear();
         for (int i = 0; i < cantidad; i++) {
             cargarProducto(visibles[i]);
@@ -115,9 +119,35 @@ public class CatalogoControlador {
         if (!categoria.equals("Todas") && !producto.getCategoria().equals(categoria)) {
             return false;
         }
+        if (producto.getPrecio() > precio.getValue()) {
+            return false;
+        }
+        if (soloDisponibles.isSelected() && !producto.estaDisponible()) {
+            return false;
+        }
         return texto.isEmpty()
                 || producto.getNombre().toLowerCase().contains(texto)
                 || producto.getCategoria().toLowerCase().contains(texto);
+    }
+
+    private void ordenar(Producto[] visibles, int cantidad) {
+        if (orden.getValue() == null || orden.getValue().equals("Recomendados")) {
+            return;
+        }
+
+        boolean menorAMayor = orden.getValue().equals("Precio: menor a mayor");
+        for (int i = 0; i < cantidad - 1; i++) {
+            for (int j = i + 1; j < cantidad; j++) {
+                boolean cambiar = menorAMayor
+                        ? visibles[j].getPrecio() < visibles[i].getPrecio()
+                        : visibles[j].getPrecio() > visibles[i].getPrecio();
+                if (cambiar) {
+                    Producto auxiliar = visibles[i];
+                    visibles[i] = visibles[j];
+                    visibles[j] = auxiliar;
+                }
+            }
+        }
     }
 
     private void cargarProducto(Producto producto) {

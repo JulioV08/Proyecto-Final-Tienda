@@ -54,6 +54,14 @@ Avance del proyecto de Programación. En esta entrega se trabaja únicamente el 
 - Mensaje cuando no hay resultados.
 - El filtrado recorre la `ListaProductos` sin usar colecciones de Java.
 
+## Avance 7 — Precio, disponibilidad y orden
+
+- Filtro por precio máximo con un control deslizante.
+- Opción para mostrar únicamente productos con stock.
+- Orden por precio de menor a mayor o de mayor a menor.
+- El contador se actualiza con cada combinación de filtros.
+- La tarjeta muestra `Agotado` cuando el stock llega a cero.
+
 ## Requisitos
 
 - JDK 25
