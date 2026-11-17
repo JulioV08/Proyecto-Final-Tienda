@@ -62,6 +62,15 @@ Avance del proyecto de Programación. En esta entrega se trabaja únicamente el 
 - El contador se actualiza con cada combinación de filtros.
 - La tarjeta muestra `Agotado` cuando el stock llega a cero.
 
+## Avance 8 — Pila de búsquedas y cola de recomendados
+
+- Las búsquedas confirmadas con Enter se guardan en una `Pila` propia.
+- La pila muestra las últimas seis búsquedas, de la más reciente a la más antigua.
+- El botón `Limpiar` vacía la pila.
+- Los productos disponibles se cargan en una `Cola` circular de recomendados.
+- El botón `Ver otro` rota la cola y muestra el siguiente producto.
+- Se usan `ListaEnlazada`, `ListaProductos`, `Pila` y `Cola`, sin `java.util.Stack`.
+
 ## Requisitos
 
 - JDK 25

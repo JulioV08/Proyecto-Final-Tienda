@@ -5,6 +5,8 @@ import java.io.IOException;
 import com.nodo.tienda.App;
 import com.nodo.tienda.datos.RepositorioProductos;
 import com.nodo.tienda.datos.RepositorioUsuarios;
+import com.nodo.tienda.estructuras.Cola;
+import com.nodo.tienda.estructuras.Pila;
 import com.nodo.tienda.modelo.Producto;
 import com.nodo.tienda.modelo.Usuario;
 
@@ -58,6 +60,9 @@ public class CatalogoControlador {
     @FXML
     private CheckBox soloDisponibles;
 
+    private final Pila<String> historialBusquedas = new Pila<>();
+    private final Cola<Producto> recomendados = new Cola<>();
+
     @FXML
     public void initialize() {
         Usuario usuario = RepositorioUsuarios.getUsuario();
@@ -73,7 +78,6 @@ public class CatalogoControlador {
         orden.setValue("Recomendados");
         categorias.getSelectionModel().selectFirst();
         busquedas.setPlaceholder(new Label("Aún no hay búsquedas."));
-        recomendado.setText("Disponible en el próximo avance.");
 
         busqueda.textProperty().addListener((observable, anterior, nuevo) -> aplicarFiltros());
         precio.valueProperty().addListener((observable, anterior, nuevo) -> aplicarFiltros());
@@ -82,6 +86,8 @@ public class CatalogoControlador {
         categorias.getSelectionModel().selectedItemProperty()
                 .addListener((observable, anterior, nuevo) -> aplicarFiltros());
 
+        cargarRecomendados();
+        actualizarBusquedas();
         aplicarFiltros();
     }
 
@@ -162,6 +168,52 @@ public class CatalogoControlador {
         }
     }
 
+    private void cargarRecomendados() {
+        recomendados.vaciar();
+        for (int i = 0; i < RepositorioProductos.tamanio(); i++) {
+            Producto producto = RepositorioProductos.obtener(i);
+            if (producto.estaDisponible()) {
+                recomendados.encolar(producto);
+            }
+        }
+        if (recomendados.estaVacia()) {
+            for (int i = 0; i < RepositorioProductos.tamanio(); i++) {
+                recomendados.encolar(RepositorioProductos.obtener(i));
+            }
+        }
+        mostrarRecomendado();
+    }
+
+    private void mostrarRecomendado() {
+        if (recomendados.estaVacia()) {
+            recomendado.setText("No hay recomendaciones disponibles.");
+            return;
+        }
+        Producto producto = recomendados.obtener(0);
+        recomendado.setText(producto.getNombre() + " · " + producto.getPrecioTexto());
+    }
+
+    private void actualizarBusquedas() {
+        busquedas.getItems().clear();
+        int limite = Math.min(6, historialBusquedas.tamanio());
+        for (int i = 0; i < limite; i++) {
+            busquedas.getItems().add("· " + historialBusquedas.obtener(i));
+        }
+    }
+
+    private void registrarBusqueda() {
+        String texto = busqueda.getText() == null ? "" : busqueda.getText().trim();
+        if (texto.isEmpty()) {
+            return;
+        }
+        if (!historialBusquedas.estaVacia()
+                && historialBusquedas.obtener(0).equalsIgnoreCase(texto)) {
+            return;
+        }
+        historialBusquedas.apilar(texto);
+        actualizarBusquedas();
+    }
+
     public void verDetalle(Producto producto) {
         DetalleControlador.seleccionar(producto);
         App.irA("detalle");
@@ -169,17 +221,23 @@ public class CatalogoControlador {
 
     @FXML
     private void onBuscar() {
+        registrarBusqueda();
         aplicarFiltros();
     }
 
     @FXML
     private void onSiguienteRecomendado() {
-        recomendado.setText("Disponible en el próximo avance.");
+        if (recomendados.tamanio() > 1) {
+            Producto siguiente = recomendados.desencolar();
+            recomendados.encolar(siguiente);
+        }
+        mostrarRecomendado();
     }
 
     @FXML
     private void onLimpiarBusquedas() {
-        busquedas.getItems().clear();
+        historialBusquedas.vaciar();
+        actualizarBusquedas();
     }
 
     @FXML
