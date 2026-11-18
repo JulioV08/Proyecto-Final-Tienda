@@ -76,7 +76,7 @@
                 </Label>
                 <TextField fx:id="busqueda" onAction="#onBuscar"
                            prefWidth="390.0" prefHeight="32.0"
-                           promptText="Busca un producto por nombre o categoría">
+                           promptText="Busca por nombre o categoría y pulsa Enter">
                     <background>
                         <Background>
                             <fills>

@@ -185,6 +185,18 @@
                         <PasswordField fx:id="contrasena" maxWidth="Infinity" prefHeight="36.0"
                                        promptText="Mínimo 6 caracteres" />
                     </VBox>
+                    <VBox spacing="6.0">
+                        <Label text="Repetir contraseña">
+                            <font>
+                                <Font name="Segoe UI Bold" size="12.0" />
+                            </font>
+                            <textFill>
+                                <Color red="0.2157" green="0.2549" blue="0.3176" />
+                            </textFill>
+                        </Label>
+                        <PasswordField fx:id="repetirContrasena" maxWidth="Infinity" prefHeight="36.0"
+                                       promptText="Escribe la contraseña otra vez" />
+                    </VBox>
                     <Label fx:id="mensaje" managed="false" visible="false" wrapText="true">
                         <font>
                             <Font name="Segoe UI" size="12.0" />

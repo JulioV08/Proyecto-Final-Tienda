@@ -1,5 +1,7 @@
 package com.nodo.tienda.controladores;
 
+import java.time.LocalDate;
+
 import com.nodo.tienda.App;
 import com.nodo.tienda.datos.RepositorioUsuarios;
 import com.nodo.tienda.modelo.Usuario;
@@ -32,6 +34,9 @@ public class RegistroControlador {
     private PasswordField contrasena;
 
     @FXML
+    private PasswordField repetirContrasena;
+
+    @FXML
     private Label mensaje;
 
     @FXML
@@ -41,11 +46,18 @@ public class RegistroControlador {
         String correoIngresado = texto(correo);
         String telefonoIngresado = texto(telefono);
         String contrasenaIngresada = texto(contrasena);
+        String contrasenaRepetida = texto(repetirContrasena);
 
         if (nombreIngresado.isEmpty() || apellidosIngresados.isEmpty()
                 || correoIngresado.isEmpty() || telefonoIngresado.isEmpty()
-                || contrasenaIngresada.isEmpty() || fechaNacimiento.getValue() == null) {
+                || contrasenaIngresada.isEmpty() || contrasenaRepetida.isEmpty()
+                || fechaNacimiento.getValue() == null) {
             mostrarMensaje("Completa todos los campos para crear tu cuenta.");
+            return;
+        }
+
+        if (!nombreIngresado.matches("[\\p{L} ]+") || !apellidosIngresados.matches("[\\p{L} ]+")) {
+            mostrarMensaje("El nombre y los apellidos solo deben contener letras.");
             return;
         }
 
@@ -56,6 +68,16 @@ public class RegistroControlador {
 
         if (contrasenaIngresada.length() < 6) {
             mostrarMensaje("La contraseña debe tener al menos 6 caracteres.");
+            return;
+        }
+
+        if (!contrasenaIngresada.equals(contrasenaRepetida)) {
+            mostrarMensaje("Las contraseñas no coinciden.");
+            return;
+        }
+
+        if (fechaNacimiento.getValue().isAfter(LocalDate.now())) {
+            mostrarMensaje("La fecha de nacimiento no puede ser futura.");
             return;
         }
 
@@ -89,6 +111,7 @@ public class RegistroControlador {
         telefono.clear();
         fechaNacimiento.setValue(null);
         contrasena.clear();
+        repetirContrasena.clear();
     }
 
     private void mostrarMensaje(String texto) {
