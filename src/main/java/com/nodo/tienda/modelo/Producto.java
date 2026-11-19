@@ -5,7 +5,6 @@ import java.util.Locale;
 
 public class Producto {
 
-    private int id;
     private String nombre;
     private String categoria;
     private int precio;
@@ -23,14 +22,6 @@ public class Producto {
         this.icono = icono;
         this.destacado = destacado;
         this.descripcion = descripcion;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNombre() {

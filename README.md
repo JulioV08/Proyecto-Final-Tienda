@@ -1,5 +1,22 @@
-# nodo — Login y catálogo
+# nodo — Plataforma E-Commerce
 
+Proyecto final para la asignatura de Programación.
+
+## Prototipo Interactivo
+Puedes consultar el diseño completo y el prototipo funcional en el siguiente enlace:
+https://www.figma.com/design/YmSj5F8fhFY8r8YTP63SRG/Actividad-06-Prototipo?node-id=0-1&t=yt6cCPw93LSG8Rxb-1
+
+## Módulos Diseñados
+- *Acceso:* Login y Registro de usuarios.
+- *Cliente:* Catálogo con filtros, Historial de Compras y Lista de Favoritos.
+- *Administrador:* Dashboard de Gestión de Inventario (con búsqueda por ID y edición) y Formulario de Registro de Productos.
+
+## Integrantes
+- Julio Cesar Vidal Herazo
+- Camilo Andrés Palmera Fernández
+- Juan Andrés Torres Peña
+
+## Entrega actual
 Avance del proyecto de Programación. Esta entrega incluye únicamente el acceso de usuarios y el catálogo de productos.
 
 ## Módulos de esta entrega
@@ -11,22 +28,25 @@ Avance del proyecto de Programación. Esta entrega incluye únicamente el acceso
 - Detalle del producto.
 - Búsqueda por nombre o categoría.
 - Filtros por categoría, precio y disponibilidad.
+- Precio máximo visible y editable, con rangos rápidos.
+- Botón `Limpiar filtro` que restablece búsqueda, categoría, precio, disponibilidad y orden.
 - Orden por precio.
-- Búsquedas recientes y productos recomendados.
+- Productos relacionados en el detalle.
+- En cada tarjeta, botón `Ver detalle` y botón `Añadir al carrito` (solo visual).
 
 ## Estructuras propias
 
 - `ListaEnlazada`: usuarios registrados.
 - `ListaProductos`: productos del catálogo.
-- `Pila`: historial de búsquedas recientes.
-- `Cola`: rotación de productos recomendados.
 
-Las estructuras usan nodos propios y no se utiliza `java.util.Stack`.
+El proyecto también conserva las clases `Pila` y `Cola` con nodos propios. No se utiliza `java.util.Stack`.
 
-## Cuentas de prueba
+## Cuentas
 
-- Cliente: `lucia.martin@email.com` / `123456`
-- Administrador: `admin@nodo.com` / `admin123`
+- Usuario de prueba: `lucia.martin@email.com` / `123456`
+- También puedes crear una cuenta nueva desde el formulario **Registro**. Se puede iniciar sesión con ella desde ese mismo momento.
+- Las cuentas nuevas se guardan en `usuarios.txt`, en la carpeta del proyecto. Al volver a abrir el programa, ese archivo se lee y las cuentas siguen ahí.
+- Por ahora solo hay un usuario de prueba; no hay usuario administrador.
 
 ## Requisitos
 
@@ -63,6 +83,7 @@ src/main/resources/com/nodo/tienda/vistas/
   catalogo.fxml
   producto.fxml
   detalle.fxml
+  relacionado.fxml
 ```
 
 ## Avances
@@ -78,6 +99,7 @@ src/main/resources/com/nodo/tienda/vistas/
 | 16/11/2026 | Avance 7 | Filtro por precio, disponibilidad, orden y contador. |
 | 17/11/2026 | Avance 8 | Pila de búsquedas recientes y cola de recomendados. |
 | 18/11/2026 | Avance 9 | Validaciones finales, sesión y documentación. |
+| 19/11/2026 | Avance 10 | Precio máximo editable y productos relacionados. |
 
 ## Avance 1 — Acceso de usuarios
 
@@ -99,9 +121,8 @@ src/main/resources/com/nodo/tienda/vistas/
 
 - Modelo `Producto` con nombre, categoría, precio, stock, ícono, descripción y estado destacado.
 - Productos guardados en memoria con `NodoProducto` y `ListaProductos`.
-- IDs automáticos y consecutivos para cada producto.
 - Catálogo inicial en forma de lista con los datos principales.
-- Seis productos de prueba de distintas categorías.
+- Nueve productos de prueba de distintas categorías.
 
 ## Avance 4 — Catálogo visual
 
@@ -153,3 +174,13 @@ src/main/resources/com/nodo/tienda/vistas/
 - Mensajes de error y confirmación más claros.
 - Documentación de la entrega y de las estructuras usadas.
 - El catálogo muestra el nombre y el rol del usuario autenticado.
+
+## Avance 10 — Precio claro y productos relacionados
+
+- El filtro de precio muestra el valor actual como `Hasta $150.000`.
+- El precio máximo se puede escribir en un campo y aplicar con Enter o con el botón `Aplicar`.
+- Botones rápidos para ver todos los productos o limitar el precio a 50.000, 80.000 o 120.000.
+- La barra lateral del catálogo se puede desplazar cuando la ventana es pequeña.
+- El detalle muestra hasta tres productos de la misma categoría.
+- Al seleccionar un producto relacionado se abre su propia vista de detalle.
+- Si no hay productos relacionados, la sección se oculta automáticamente.

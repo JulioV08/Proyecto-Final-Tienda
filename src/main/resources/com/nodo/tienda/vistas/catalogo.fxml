@@ -11,14 +11,18 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.Background?>
 <?import javafx.scene.layout.BackgroundFill?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
@@ -232,7 +236,7 @@
                 </textFill>
             </Label>
             <HBox spacing="18.0" VBox.vgrow="ALWAYS">
-                <VBox prefWidth="190.0" spacing="7.0">
+                <VBox prefWidth="200.0" spacing="5.0">
                     <Label text="Filtros">
                         <font>
                             <Font name="Segoe UI Bold" size="13.0" />
@@ -268,26 +272,151 @@
                             <Color red="0.3922" green="0.4549" blue="0.5451" />
                         </textFill>
                     </Label>
+                    <Label fx:id="precioActual" text="Hasta $150.000">
+                        <font>
+                            <Font name="Segoe UI Bold" size="12.0" />
+                        </font>
+                        <textFill>
+                            <Color red="0.0588" green="0.0902" blue="0.1647" />
+                        </textFill>
+                    </Label>
                     <Slider fx:id="precio" min="0.0" max="150000.0" value="150000.0"
                             blockIncrement="1000.0" />
-                    <HBox>
-                        <Label text="0">
+                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                        <TextField fx:id="precioExacto" onAction="#onAplicarPrecio"
+                                   prefHeight="30.0" promptText="150000" HBox.hgrow="ALWAYS">
                             <font>
-                                <Font name="Segoe UI" size="9.0" />
+                                <Font name="Segoe UI" size="10.0" />
+                            </font>
+                            <background>
+                                <Background>
+                                    <fills>
+                                        <BackgroundFill>
+                                            <fill>
+                                                <Color red="0.8392" green="0.8706" blue="0.9098" />
+                                            </fill>
+                                        </BackgroundFill>
+                                        <BackgroundFill>
+                                            <fill>
+                                                <Color red="1.0" green="1.0" blue="1.0" />
+                                            </fill>
+                                            <insets>
+                                                <Insets top="1.0" right="1.0" bottom="1.0" left="1.0" />
+                                            </insets>
+                                        </BackgroundFill>
+                                    </fills>
+                                </Background>
+                            </background>
+                            <padding>
+                                <Insets top="5.0" right="8.0" bottom="5.0" left="8.0" />
+                            </padding>
+                        </TextField>
+                        <Button onAction="#onAplicarPrecio" text="Aplicar"
+                                prefWidth="76.0" prefHeight="30.0">
+                            <font>
+                                <Font name="Segoe UI Bold" size="9.0" />
                             </font>
                             <textFill>
-                                <Color red="0.5804" green="0.6392" blue="0.7216" />
+                                <Color red="1.0" green="1.0" blue="1.0" />
                             </textFill>
-                        </Label>
-                        <Region HBox.hgrow="ALWAYS" />
-                        <Label text="150.000 COP">
+                            <background>
+                                <Background>
+                                    <fills>
+                                        <BackgroundFill>
+                                            <fill>
+                                                <Color red="0.9373" green="0.2667" blue="0.2667" />
+                                            </fill>
+                                        </BackgroundFill>
+                                    </fills>
+                                </Background>
+                            </background>
+                        </Button>
+                    </HBox>
+                    <HBox spacing="5.0">
+                        <Button onAction="#onPrecio50" text="≤ 50k" maxWidth="Infinity"
+                                prefHeight="26.0" HBox.hgrow="ALWAYS">
                             <font>
-                                <Font name="Segoe UI" size="9.0" />
+                                <Font name="Segoe UI Bold" size="8.0" />
                             </font>
                             <textFill>
-                                <Color red="0.5804" green="0.6392" blue="0.7216" />
+                                <Color red="0.0588" green="0.0902" blue="0.1647" />
                             </textFill>
-                        </Label>
+                            <background>
+                                <Background>
+                                    <fills>
+                                        <BackgroundFill>
+                                            <fill>
+                                                <Color red="0.8392" green="0.8706" blue="0.9098" />
+                                            </fill>
+                                        </BackgroundFill>
+                                        <BackgroundFill>
+                                            <fill>
+                                                <Color red="1.0" green="1.0" blue="1.0" />
+                                            </fill>
+                                            <insets>
+                                                <Insets top="1.0" right="1.0" bottom="1.0" left="1.0" />
+                                            </insets>
+                                        </BackgroundFill>
+                                    </fills>
+                                </Background>
+                            </background>
+                        </Button>
+                        <Button onAction="#onPrecio80" text="≤ 80k" maxWidth="Infinity"
+                                prefHeight="26.0" HBox.hgrow="ALWAYS">
+                            <font>
+                                <Font name="Segoe UI Bold" size="8.0" />
+                            </font>
+                            <textFill>
+                                <Color red="0.0588" green="0.0902" blue="0.1647" />
+                            </textFill>
+                            <background>
+                                <Background>
+                                    <fills>
+                                        <BackgroundFill>
+                                            <fill>
+                                                <Color red="0.8392" green="0.8706" blue="0.9098" />
+                                            </fill>
+                                        </BackgroundFill>
+                                        <BackgroundFill>
+                                            <fill>
+                                                <Color red="1.0" green="1.0" blue="1.0" />
+                                            </fill>
+                                            <insets>
+                                                <Insets top="1.0" right="1.0" bottom="1.0" left="1.0" />
+                                            </insets>
+                                        </BackgroundFill>
+                                    </fills>
+                                </Background>
+                            </background>
+                        </Button>
+                        <Button onAction="#onPrecio120" text="≤ 120k" maxWidth="Infinity"
+                                prefHeight="26.0" HBox.hgrow="ALWAYS">
+                            <font>
+                                <Font name="Segoe UI Bold" size="8.0" />
+                            </font>
+                            <textFill>
+                                <Color red="0.0588" green="0.0902" blue="0.1647" />
+                            </textFill>
+                            <background>
+                                <Background>
+                                    <fills>
+                                        <BackgroundFill>
+                                            <fill>
+                                                <Color red="0.8392" green="0.8706" blue="0.9098" />
+                                            </fill>
+                                        </BackgroundFill>
+                                        <BackgroundFill>
+                                            <fill>
+                                                <Color red="1.0" green="1.0" blue="1.0" />
+                                            </fill>
+                                            <insets>
+                                                <Insets top="1.0" right="1.0" bottom="1.0" left="1.0" />
+                                            </insets>
+                                        </BackgroundFill>
+                                    </fills>
+                                </Background>
+                            </background>
+                        </Button>
                     </HBox>
                     <CheckBox fx:id="soloDisponibles" text="Solo productos disponibles">
                         <font>
@@ -297,65 +426,30 @@
                             <Color red="0.3922" green="0.4549" blue="0.5451" />
                         </textFill>
                     </CheckBox>
-                    <VBox spacing="4.0">
+                    <Button onAction="#onLimpiarFiltros" text="Limpiar filtro"
+                            maxWidth="Infinity" prefHeight="28.0" HBox.hgrow="ALWAYS">
+                        <font>
+                            <Font name="Segoe UI Bold" size="9.0" />
+                        </font>
+                        <textFill>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </textFill>
                         <background>
                             <Background>
                                 <fills>
                                     <BackgroundFill>
                                         <fill>
-                                            <Color red="0.9451" green="0.9608" blue="0.9765" />
+                                            <Color red="0.9373" green="0.2667" blue="0.2667" />
                                         </fill>
                                     </BackgroundFill>
                                 </fills>
                             </Background>
                         </background>
-                        <padding>
-                            <Insets top="8.0" right="10.0" bottom="8.0" left="10.0" />
-                        </padding>
-                        <Label text="Recomendado para ti">
-                            <font>
-                                <Font name="Segoe UI Bold" size="9.0" />
-                            </font>
-                            <textFill>
-                                <Color red="0.0588" green="0.0902" blue="0.1647" />
-                            </textFill>
-                        </Label>
-                        <Label fx:id="recomendado" text="Cargando recomendación..." wrapText="true">
-                            <font>
-                                <Font name="Segoe UI" size="9.0" />
-                            </font>
-                            <textFill>
-                                <Color red="0.3922" green="0.4549" blue="0.5451" />
-                            </textFill>
-                        </Label>
-                        <Button onAction="#onSiguienteRecomendado" text="Ver otro"
-                                maxWidth="Infinity">
-                            <font>
-                                <Font name="Segoe UI Bold" size="9.0" />
-                            </font>
-                        </Button>
-                    </VBox>
-                    <HBox alignment="CENTER_LEFT">
-                        <Label text="Últimas búsquedas">
-                            <font>
-                                <Font name="Segoe UI Bold" size="9.0" />
-                            </font>
-                            <textFill>
-                                <Color red="0.3922" green="0.4549" blue="0.5451" />
-                            </textFill>
-                        </Label>
-                        <Region HBox.hgrow="ALWAYS" />
-                        <Button onAction="#onLimpiarBusquedas" text="Limpiar">
-                            <font>
-                                <Font name="Segoe UI" size="8.0" />
-                            </font>
-                        </Button>
-                    </HBox>
-                    <ListView fx:id="busquedas" prefHeight="88.0" focusTraversable="false" />
+                    </Button>
                 </VBox>
                 <VBox spacing="6.0" HBox.hgrow="ALWAYS">
                     <HBox alignment="CENTER_LEFT" spacing="6.0">
-                        <Label fx:id="contador" text="0 productos para ti">
+                        <Label fx:id="contador" text="9 productos para ti">
                             <font>
                                 <Font name="Segoe UI" size="10.0" />
                             </font>
@@ -372,7 +466,15 @@
                                 <Color red="0.3922" green="0.4549" blue="0.5451" />
                             </textFill>
                         </Label>
-                        <ComboBox fx:id="orden" prefWidth="180.0" />
+                        <ComboBox fx:id="orden" prefWidth="180.0" value="Recomendados">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Recomendados" />
+                                    <String fx:value="Precio: menor a mayor" />
+                                    <String fx:value="Precio: mayor a menor" />
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
                     </HBox>
                     <Label fx:id="mensaje" managed="false" visible="false" wrapText="true">
                         <font>
@@ -382,7 +484,7 @@
                             <Color red="0.9373" green="0.2667" blue="0.2667" />
                         </textFill>
                     </Label>
-                    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                    <ScrollPane fitToWidth="false" prefWidth="650.0" minWidth="650.0" VBox.vgrow="ALWAYS">
                         <background>
                             <Background>
                                 <fills>
@@ -395,11 +497,1694 @@
                             </Background>
                         </background>
                         <content>
-                            <FlowPane fx:id="contenedorProductos" alignment="TOP_LEFT"
-                                      hgap="14.0" vgap="14.0">
+                            <FlowPane fx:id="contenedorProductos" alignment="TOP_CENTER"
+                                      prefWrapLength="650.0" hgap="14.0" vgap="14.0">
                                 <padding>
                                     <Insets top="6.0" right="6.0" bottom="6.0" left="6.0" />
                                 </padding>
+                                <VBox prefWidth="200.0" prefHeight="234.0">
+                                    <background>
+                                        <Background>
+                                            <fills>
+                                                <BackgroundFill>
+                                                    <fill>
+                                                        <Color red="1.0" green="1.0" blue="1.0" />
+                                                    </fill>
+                                                </BackgroundFill>
+                                            </fills>
+                                        </Background>
+                                    </background>
+                                    <effect>
+                                        <DropShadow radius="8.0" offsetY="2.0">
+                                            <color>
+                                                <Color red="0.0" green="0.0" blue="0.0" opacity="0.10" />
+                                            </color>
+                                        </DropShadow>
+                                    </effect>
+                                    <StackPane prefHeight="96.0">
+                                        <background>
+                                            <Background>
+                                                <fills>
+                                                    <BackgroundFill>
+                                                        <fill>
+                                                            <LinearGradient startX="0.0" startY="0.0" endX="1.0" endY="1.0">
+                                                                <stops>
+                                                                    <Stop offset="0.0">
+                                                                        <color>
+                                                                            <Color red="0.8863" green="0.9098" blue="0.9412" />
+                                                                        </color>
+                                                                    </Stop>
+                                                                    <Stop offset="1.0">
+                                                                        <color>
+                                                                            <Color red="0.9725" green="0.9804" blue="0.9882" />
+                                                                        </color>
+                                                                    </Stop>
+                                                                </stops>
+                                                            </LinearGradient>
+                                                        </fill>
+                                                    </BackgroundFill>
+                                                </fills>
+                                            </Background>
+                                        </background>
+                                        <children>
+                                            <VBox alignment="CENTER" spacing="2.0">
+                                                <Label text="🎧">
+                                                    <font>
+                                                        <Font name="Segoe UI Emoji" size="38.0" />
+                                                    </font>
+                                                    <textFill>
+                                                        <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                                    </textFill>
+                                                </Label>
+                                                <Label text="nodo">
+                                                    <font>
+                                                        <Font name="Segoe UI" size="9.0" />
+                                                    </font>
+                                                    <textFill>
+                                                        <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                                    </textFill>
+                                                </Label>
+                                            </VBox>
+                                            <Label text="MÁS VENDIDO" visible="true" managed="true"
+                                                   StackPane.alignment="TOP_LEFT">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.9373" green="0.2667" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="3.0" right="6.0" bottom="3.0" left="6.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="8.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                                <StackPane.margin>
+                                                    <Insets top="8.0" right="8.0" bottom="8.0" left="8.0" />
+                                                </StackPane.margin>
+                                            </Label>
+                                        </children>
+                                    </StackPane>
+                                    <VBox spacing="3.0" VBox.vgrow="ALWAYS">
+                                        <padding>
+                                            <Insets top="8.0" right="12.0" bottom="8.0" left="12.0" />
+                                        </padding>
+                                        <Label text="AUDIO">
+                                            <font>
+                                                <Font name="Segoe UI Bold" size="8.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                            </textFill>
+                                        </Label>
+                                        <Label text="Auriculares Aura" wrapText="true">
+                                            <font>
+                                                <Font name="Segoe UI Bold" size="13.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                            </textFill>
+                                        </Label>
+                                        <HBox alignment="CENTER_LEFT" spacing="6.0">
+                                            <Label text="\$89.900">
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="16.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                                </textFill>
+                                            </Label>
+                                            <Region HBox.hgrow="ALWAYS" />
+                                            <Label text="★ 4.8 (24)">
+                                                <font>
+                                                    <Font name="Segoe UI" size="9.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                                </textFill>
+                                            </Label>
+                                        </HBox>
+                                        <Label text="Stock: 12">
+                                            <font>
+                                                <Font name="Segoe UI" size="9.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                            </textFill>
+                                        </Label>
+                                        <Region VBox.vgrow="ALWAYS" />
+                                        <HBox spacing="6.0">
+                                            <Button text="Ver detalle" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.9373" green="0.2667" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="6.0" right="8.0" bottom="6.0" left="8.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="9.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                            </Button>
+                                            <Button text="Añadir al carrito" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.1176" green="0.1647" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="6.0" right="4.0" bottom="6.0" left="4.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="8.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                            </Button>
+                                        </HBox>
+                                    </VBox>
+                                </VBox>
+                                <VBox prefWidth="200.0" prefHeight="234.0">
+                                    <background>
+                                        <Background>
+                                            <fills>
+                                                <BackgroundFill>
+                                                    <fill>
+                                                        <Color red="1.0" green="1.0" blue="1.0" />
+                                                    </fill>
+                                                </BackgroundFill>
+                                            </fills>
+                                        </Background>
+                                    </background>
+                                    <effect>
+                                        <DropShadow radius="8.0" offsetY="2.0">
+                                            <color>
+                                                <Color red="0.0" green="0.0" blue="0.0" opacity="0.10" />
+                                            </color>
+                                        </DropShadow>
+                                    </effect>
+                                    <StackPane prefHeight="96.0">
+                                        <background>
+                                            <Background>
+                                                <fills>
+                                                    <BackgroundFill>
+                                                        <fill>
+                                                            <LinearGradient startX="0.0" startY="0.0" endX="1.0" endY="1.0">
+                                                                <stops>
+                                                                    <Stop offset="0.0">
+                                                                        <color>
+                                                                            <Color red="0.8863" green="0.9098" blue="0.9412" />
+                                                                        </color>
+                                                                    </Stop>
+                                                                    <Stop offset="1.0">
+                                                                        <color>
+                                                                            <Color red="0.9725" green="0.9804" blue="0.9882" />
+                                                                        </color>
+                                                                    </Stop>
+                                                                </stops>
+                                                            </LinearGradient>
+                                                        </fill>
+                                                    </BackgroundFill>
+                                                </fills>
+                                            </Background>
+                                        </background>
+                                        <children>
+                                            <VBox alignment="CENTER" spacing="2.0">
+                                                <Label text="⌨">
+                                                    <font>
+                                                        <Font name="Segoe UI Emoji" size="38.0" />
+                                                    </font>
+                                                    <textFill>
+                                                        <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                                    </textFill>
+                                                </Label>
+                                                <Label text="nodo">
+                                                    <font>
+                                                        <Font name="Segoe UI" size="9.0" />
+                                                    </font>
+                                                    <textFill>
+                                                        <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                                    </textFill>
+                                                </Label>
+                                            </VBox>
+                                            <Label text="MÁS VENDIDO" visible="false" managed="false"
+                                                   StackPane.alignment="TOP_LEFT">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.9373" green="0.2667" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="3.0" right="6.0" bottom="3.0" left="6.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="8.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                                <StackPane.margin>
+                                                    <Insets top="8.0" right="8.0" bottom="8.0" left="8.0" />
+                                                </StackPane.margin>
+                                            </Label>
+                                        </children>
+                                    </StackPane>
+                                    <VBox spacing="3.0" VBox.vgrow="ALWAYS">
+                                        <padding>
+                                            <Insets top="8.0" right="12.0" bottom="8.0" left="12.0" />
+                                        </padding>
+                                        <Label text="ESCRITORIO">
+                                            <font>
+                                                <Font name="Segoe UI Bold" size="8.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                            </textFill>
+                                        </Label>
+                                        <Label text="Teclado mecánico Tacto" wrapText="true">
+                                            <font>
+                                                <Font name="Segoe UI Bold" size="13.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                            </textFill>
+                                        </Label>
+                                        <HBox alignment="CENTER_LEFT" spacing="6.0">
+                                            <Label text="\$79.900">
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="16.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                                </textFill>
+                                            </Label>
+                                            <Region HBox.hgrow="ALWAYS" />
+                                            <Label text="★ 4.8 (24)">
+                                                <font>
+                                                    <Font name="Segoe UI" size="9.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                                </textFill>
+                                            </Label>
+                                        </HBox>
+                                        <Label text="Stock: 10">
+                                            <font>
+                                                <Font name="Segoe UI" size="9.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                            </textFill>
+                                        </Label>
+                                        <Region VBox.vgrow="ALWAYS" />
+                                        <HBox spacing="6.0">
+                                            <Button text="Ver detalle" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.9373" green="0.2667" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="6.0" right="8.0" bottom="6.0" left="8.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="9.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                            </Button>
+                                            <Button text="Añadir al carrito" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.1176" green="0.1647" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="6.0" right="4.0" bottom="6.0" left="4.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="8.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                            </Button>
+                                        </HBox>
+                                    </VBox>
+                                </VBox>
+                                <VBox prefWidth="200.0" prefHeight="234.0">
+                                    <background>
+                                        <Background>
+                                            <fills>
+                                                <BackgroundFill>
+                                                    <fill>
+                                                        <Color red="1.0" green="1.0" blue="1.0" />
+                                                    </fill>
+                                                </BackgroundFill>
+                                            </fills>
+                                        </Background>
+                                    </background>
+                                    <effect>
+                                        <DropShadow radius="8.0" offsetY="2.0">
+                                            <color>
+                                                <Color red="0.0" green="0.0" blue="0.0" opacity="0.10" />
+                                            </color>
+                                        </DropShadow>
+                                    </effect>
+                                    <StackPane prefHeight="96.0">
+                                        <background>
+                                            <Background>
+                                                <fills>
+                                                    <BackgroundFill>
+                                                        <fill>
+                                                            <LinearGradient startX="0.0" startY="0.0" endX="1.0" endY="1.0">
+                                                                <stops>
+                                                                    <Stop offset="0.0">
+                                                                        <color>
+                                                                            <Color red="0.8863" green="0.9098" blue="0.9412" />
+                                                                        </color>
+                                                                    </Stop>
+                                                                    <Stop offset="1.0">
+                                                                        <color>
+                                                                            <Color red="0.9725" green="0.9804" blue="0.9882" />
+                                                                        </color>
+                                                                    </Stop>
+                                                                </stops>
+                                                            </LinearGradient>
+                                                        </fill>
+                                                    </BackgroundFill>
+                                                </fills>
+                                            </Background>
+                                        </background>
+                                        <children>
+                                            <VBox alignment="CENTER" spacing="2.0">
+                                                <Label text="🔊">
+                                                    <font>
+                                                        <Font name="Segoe UI Emoji" size="38.0" />
+                                                    </font>
+                                                    <textFill>
+                                                        <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                                    </textFill>
+                                                </Label>
+                                                <Label text="nodo">
+                                                    <font>
+                                                        <Font name="Segoe UI" size="9.0" />
+                                                    </font>
+                                                    <textFill>
+                                                        <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                                    </textFill>
+                                                </Label>
+                                            </VBox>
+                                            <Label text="MÁS VENDIDO" visible="false" managed="false"
+                                                   StackPane.alignment="TOP_LEFT">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.9373" green="0.2667" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="3.0" right="6.0" bottom="3.0" left="6.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="8.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                                <StackPane.margin>
+                                                    <Insets top="8.0" right="8.0" bottom="8.0" left="8.0" />
+                                                </StackPane.margin>
+                                            </Label>
+                                        </children>
+                                    </StackPane>
+                                    <VBox spacing="3.0" VBox.vgrow="ALWAYS">
+                                        <padding>
+                                            <Insets top="8.0" right="12.0" bottom="8.0" left="12.0" />
+                                        </padding>
+                                        <Label text="AUDIO">
+                                            <font>
+                                                <Font name="Segoe UI Bold" size="8.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                            </textFill>
+                                        </Label>
+                                        <Label text="Altavoz portátil Pulso" wrapText="true">
+                                            <font>
+                                                <Font name="Segoe UI Bold" size="13.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                            </textFill>
+                                        </Label>
+                                        <HBox alignment="CENTER_LEFT" spacing="6.0">
+                                            <Label text="\$59.900">
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="16.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                                </textFill>
+                                            </Label>
+                                            <Region HBox.hgrow="ALWAYS" />
+                                            <Label text="★ 4.8 (24)">
+                                                <font>
+                                                    <Font name="Segoe UI" size="9.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                                </textFill>
+                                            </Label>
+                                        </HBox>
+                                        <Label text="Stock: 8">
+                                            <font>
+                                                <Font name="Segoe UI" size="9.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                            </textFill>
+                                        </Label>
+                                        <Region VBox.vgrow="ALWAYS" />
+                                        <HBox spacing="6.0">
+                                            <Button text="Ver detalle" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.9373" green="0.2667" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="6.0" right="8.0" bottom="6.0" left="8.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="9.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                            </Button>
+                                            <Button text="Añadir al carrito" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.1176" green="0.1647" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="6.0" right="4.0" bottom="6.0" left="4.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="8.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                            </Button>
+                                        </HBox>
+                                    </VBox>
+                                </VBox>
+                                <VBox prefWidth="200.0" prefHeight="234.0">
+                                    <background>
+                                        <Background>
+                                            <fills>
+                                                <BackgroundFill>
+                                                    <fill>
+                                                        <Color red="1.0" green="1.0" blue="1.0" />
+                                                    </fill>
+                                                </BackgroundFill>
+                                            </fills>
+                                        </Background>
+                                    </background>
+                                    <effect>
+                                        <DropShadow radius="8.0" offsetY="2.0">
+                                            <color>
+                                                <Color red="0.0" green="0.0" blue="0.0" opacity="0.10" />
+                                            </color>
+                                        </DropShadow>
+                                    </effect>
+                                    <StackPane prefHeight="96.0">
+                                        <background>
+                                            <Background>
+                                                <fills>
+                                                    <BackgroundFill>
+                                                        <fill>
+                                                            <LinearGradient startX="0.0" startY="0.0" endX="1.0" endY="1.0">
+                                                                <stops>
+                                                                    <Stop offset="0.0">
+                                                                        <color>
+                                                                            <Color red="0.8863" green="0.9098" blue="0.9412" />
+                                                                        </color>
+                                                                    </Stop>
+                                                                    <Stop offset="1.0">
+                                                                        <color>
+                                                                            <Color red="0.9725" green="0.9804" blue="0.9882" />
+                                                                        </color>
+                                                                    </Stop>
+                                                                </stops>
+                                                            </LinearGradient>
+                                                        </fill>
+                                                    </BackgroundFill>
+                                                </fills>
+                                            </Background>
+                                        </background>
+                                        <children>
+                                            <VBox alignment="CENTER" spacing="2.0">
+                                                <Label text="🖱">
+                                                    <font>
+                                                        <Font name="Segoe UI Emoji" size="38.0" />
+                                                    </font>
+                                                    <textFill>
+                                                        <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                                    </textFill>
+                                                </Label>
+                                                <Label text="nodo">
+                                                    <font>
+                                                        <Font name="Segoe UI" size="9.0" />
+                                                    </font>
+                                                    <textFill>
+                                                        <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                                    </textFill>
+                                                </Label>
+                                            </VBox>
+                                            <Label text="MÁS VENDIDO" visible="false" managed="false"
+                                                   StackPane.alignment="TOP_LEFT">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.9373" green="0.2667" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="3.0" right="6.0" bottom="3.0" left="6.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="8.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                                <StackPane.margin>
+                                                    <Insets top="8.0" right="8.0" bottom="8.0" left="8.0" />
+                                                </StackPane.margin>
+                                            </Label>
+                                        </children>
+                                    </StackPane>
+                                    <VBox spacing="3.0" VBox.vgrow="ALWAYS">
+                                        <padding>
+                                            <Insets top="8.0" right="12.0" bottom="8.0" left="12.0" />
+                                        </padding>
+                                        <Label text="ESCRITORIO">
+                                            <font>
+                                                <Font name="Segoe UI Bold" size="8.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                            </textFill>
+                                        </Label>
+                                        <Label text="Ratón inalámbrico Trazo" wrapText="true">
+                                            <font>
+                                                <Font name="Segoe UI Bold" size="13.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                            </textFill>
+                                        </Label>
+                                        <HBox alignment="CENTER_LEFT" spacing="6.0">
+                                            <Label text="\$34.900">
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="16.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                                </textFill>
+                                            </Label>
+                                            <Region HBox.hgrow="ALWAYS" />
+                                            <Label text="★ 4.8 (24)">
+                                                <font>
+                                                    <Font name="Segoe UI" size="9.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                                </textFill>
+                                            </Label>
+                                        </HBox>
+                                        <Label text="Stock: 15">
+                                            <font>
+                                                <Font name="Segoe UI" size="9.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                            </textFill>
+                                        </Label>
+                                        <Region VBox.vgrow="ALWAYS" />
+                                        <HBox spacing="6.0">
+                                            <Button text="Ver detalle" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.9373" green="0.2667" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="6.0" right="8.0" bottom="6.0" left="8.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="9.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                            </Button>
+                                            <Button text="Añadir al carrito" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.1176" green="0.1647" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="6.0" right="4.0" bottom="6.0" left="4.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="8.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                            </Button>
+                                        </HBox>
+                                    </VBox>
+                                </VBox>
+                                <VBox prefWidth="200.0" prefHeight="234.0">
+                                    <background>
+                                        <Background>
+                                            <fills>
+                                                <BackgroundFill>
+                                                    <fill>
+                                                        <Color red="1.0" green="1.0" blue="1.0" />
+                                                    </fill>
+                                                </BackgroundFill>
+                                            </fills>
+                                        </Background>
+                                    </background>
+                                    <effect>
+                                        <DropShadow radius="8.0" offsetY="2.0">
+                                            <color>
+                                                <Color red="0.0" green="0.0" blue="0.0" opacity="0.10" />
+                                            </color>
+                                        </DropShadow>
+                                    </effect>
+                                    <StackPane prefHeight="96.0">
+                                        <background>
+                                            <Background>
+                                                <fills>
+                                                    <BackgroundFill>
+                                                        <fill>
+                                                            <LinearGradient startX="0.0" startY="0.0" endX="1.0" endY="1.0">
+                                                                <stops>
+                                                                    <Stop offset="0.0">
+                                                                        <color>
+                                                                            <Color red="0.8863" green="0.9098" blue="0.9412" />
+                                                                        </color>
+                                                                    </Stop>
+                                                                    <Stop offset="1.0">
+                                                                        <color>
+                                                                            <Color red="0.9725" green="0.9804" blue="0.9882" />
+                                                                        </color>
+                                                                    </Stop>
+                                                                </stops>
+                                                            </LinearGradient>
+                                                        </fill>
+                                                    </BackgroundFill>
+                                                </fills>
+                                            </Background>
+                                        </background>
+                                        <children>
+                                            <VBox alignment="CENTER" spacing="2.0">
+                                                <Label text="💡">
+                                                    <font>
+                                                        <Font name="Segoe UI Emoji" size="38.0" />
+                                                    </font>
+                                                    <textFill>
+                                                        <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                                    </textFill>
+                                                </Label>
+                                                <Label text="nodo">
+                                                    <font>
+                                                        <Font name="Segoe UI" size="9.0" />
+                                                    </font>
+                                                    <textFill>
+                                                        <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                                    </textFill>
+                                                </Label>
+                                            </VBox>
+                                            <Label text="MÁS VENDIDO" visible="false" managed="false"
+                                                   StackPane.alignment="TOP_LEFT">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.9373" green="0.2667" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="3.0" right="6.0" bottom="3.0" left="6.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="8.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                                <StackPane.margin>
+                                                    <Insets top="8.0" right="8.0" bottom="8.0" left="8.0" />
+                                                </StackPane.margin>
+                                            </Label>
+                                        </children>
+                                    </StackPane>
+                                    <VBox spacing="3.0" VBox.vgrow="ALWAYS">
+                                        <padding>
+                                            <Insets top="8.0" right="12.0" bottom="8.0" left="12.0" />
+                                        </padding>
+                                        <Label text="ILUMINACIÓN">
+                                            <font>
+                                                <Font name="Segoe UI Bold" size="8.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                            </textFill>
+                                        </Label>
+                                        <Label text="Lámpara de escritorio Halo" wrapText="true">
+                                            <font>
+                                                <Font name="Segoe UI Bold" size="13.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                            </textFill>
+                                        </Label>
+                                        <HBox alignment="CENTER_LEFT" spacing="6.0">
+                                            <Label text="\$49.900">
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="16.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                                </textFill>
+                                            </Label>
+                                            <Region HBox.hgrow="ALWAYS" />
+                                            <Label text="★ 4.8 (24)">
+                                                <font>
+                                                    <Font name="Segoe UI" size="9.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                                </textFill>
+                                            </Label>
+                                        </HBox>
+                                        <Label text="Stock: 6">
+                                            <font>
+                                                <Font name="Segoe UI" size="9.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                            </textFill>
+                                        </Label>
+                                        <Region VBox.vgrow="ALWAYS" />
+                                        <HBox spacing="6.0">
+                                            <Button text="Ver detalle" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.9373" green="0.2667" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="6.0" right="8.0" bottom="6.0" left="8.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="9.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                            </Button>
+                                            <Button text="Añadir al carrito" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.1176" green="0.1647" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="6.0" right="4.0" bottom="6.0" left="4.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="8.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                            </Button>
+                                        </HBox>
+                                    </VBox>
+                                </VBox>
+                                <VBox prefWidth="200.0" prefHeight="234.0">
+                                    <background>
+                                        <Background>
+                                            <fills>
+                                                <BackgroundFill>
+                                                    <fill>
+                                                        <Color red="1.0" green="1.0" blue="1.0" />
+                                                    </fill>
+                                                </BackgroundFill>
+                                            </fills>
+                                        </Background>
+                                    </background>
+                                    <effect>
+                                        <DropShadow radius="8.0" offsetY="2.0">
+                                            <color>
+                                                <Color red="0.0" green="0.0" blue="0.0" opacity="0.10" />
+                                            </color>
+                                        </DropShadow>
+                                    </effect>
+                                    <StackPane prefHeight="96.0">
+                                        <background>
+                                            <Background>
+                                                <fills>
+                                                    <BackgroundFill>
+                                                        <fill>
+                                                            <LinearGradient startX="0.0" startY="0.0" endX="1.0" endY="1.0">
+                                                                <stops>
+                                                                    <Stop offset="0.0">
+                                                                        <color>
+                                                                            <Color red="0.8863" green="0.9098" blue="0.9412" />
+                                                                        </color>
+                                                                    </Stop>
+                                                                    <Stop offset="1.0">
+                                                                        <color>
+                                                                            <Color red="0.9725" green="0.9804" blue="0.9882" />
+                                                                        </color>
+                                                                    </Stop>
+                                                                </stops>
+                                                            </LinearGradient>
+                                                        </fill>
+                                                    </BackgroundFill>
+                                                </fills>
+                                            </Background>
+                                        </background>
+                                        <children>
+                                            <VBox alignment="CENTER" spacing="2.0">
+                                                <Label text="🔌">
+                                                    <font>
+                                                        <Font name="Segoe UI Emoji" size="38.0" />
+                                                    </font>
+                                                    <textFill>
+                                                        <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                                    </textFill>
+                                                </Label>
+                                                <Label text="nodo">
+                                                    <font>
+                                                        <Font name="Segoe UI" size="9.0" />
+                                                    </font>
+                                                    <textFill>
+                                                        <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                                    </textFill>
+                                                </Label>
+                                            </VBox>
+                                            <Label text="MÁS VENDIDO" visible="false" managed="false"
+                                                   StackPane.alignment="TOP_LEFT">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.9373" green="0.2667" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="3.0" right="6.0" bottom="3.0" left="6.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="8.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                                <StackPane.margin>
+                                                    <Insets top="8.0" right="8.0" bottom="8.0" left="8.0" />
+                                                </StackPane.margin>
+                                            </Label>
+                                        </children>
+                                    </StackPane>
+                                    <VBox spacing="3.0" VBox.vgrow="ALWAYS">
+                                        <padding>
+                                            <Insets top="8.0" right="12.0" bottom="8.0" left="12.0" />
+                                        </padding>
+                                        <Label text="ACCESORIOS">
+                                            <font>
+                                                <Font name="Segoe UI Bold" size="8.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                            </textFill>
+                                        </Label>
+                                        <Label text="Cargador inalámbrico Base" wrapText="true">
+                                            <font>
+                                                <Font name="Segoe UI Bold" size="13.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                            </textFill>
+                                        </Label>
+                                        <HBox alignment="CENTER_LEFT" spacing="6.0">
+                                            <Label text="\$29.900">
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="16.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                                </textFill>
+                                            </Label>
+                                            <Region HBox.hgrow="ALWAYS" />
+                                            <Label text="★ 4.8 (24)">
+                                                <font>
+                                                    <Font name="Segoe UI" size="9.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                                </textFill>
+                                            </Label>
+                                        </HBox>
+                                        <Label text="Stock: 20">
+                                            <font>
+                                                <Font name="Segoe UI" size="9.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                            </textFill>
+                                        </Label>
+                                        <Region VBox.vgrow="ALWAYS" />
+                                        <HBox spacing="6.0">
+                                            <Button text="Ver detalle" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.9373" green="0.2667" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="6.0" right="8.0" bottom="6.0" left="8.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="9.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                            </Button>
+                                            <Button text="Añadir al carrito" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.1176" green="0.1647" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="6.0" right="4.0" bottom="6.0" left="4.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="8.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                            </Button>
+                                        </HBox>
+                                    </VBox>
+                                </VBox>
+                                <VBox prefWidth="200.0" prefHeight="234.0">
+                                    <background>
+                                        <Background>
+                                            <fills>
+                                                <BackgroundFill>
+                                                    <fill>
+                                                        <Color red="1.0" green="1.0" blue="1.0" />
+                                                    </fill>
+                                                </BackgroundFill>
+                                            </fills>
+                                        </Background>
+                                    </background>
+                                    <effect>
+                                        <DropShadow radius="8.0" offsetY="2.0">
+                                            <color>
+                                                <Color red="0.0" green="0.0" blue="0.0" opacity="0.10" />
+                                            </color>
+                                        </DropShadow>
+                                    </effect>
+                                    <StackPane prefHeight="96.0">
+                                        <background>
+                                            <Background>
+                                                <fills>
+                                                    <BackgroundFill>
+                                                        <fill>
+                                                            <LinearGradient startX="0.0" startY="0.0" endX="1.0" endY="1.0">
+                                                                <stops>
+                                                                    <Stop offset="0.0">
+                                                                        <color>
+                                                                            <Color red="0.8863" green="0.9098" blue="0.9412" />
+                                                                        </color>
+                                                                    </Stop>
+                                                                    <Stop offset="1.0">
+                                                                        <color>
+                                                                            <Color red="0.9725" green="0.9804" blue="0.9882" />
+                                                                        </color>
+                                                                    </Stop>
+                                                                </stops>
+                                                            </LinearGradient>
+                                                        </fill>
+                                                    </BackgroundFill>
+                                                </fills>
+                                            </Background>
+                                        </background>
+                                        <children>
+                                            <VBox alignment="CENTER" spacing="2.0">
+                                                <Label text="🖥">
+                                                    <font>
+                                                        <Font name="Segoe UI Emoji" size="38.0" />
+                                                    </font>
+                                                    <textFill>
+                                                        <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                                    </textFill>
+                                                </Label>
+                                                <Label text="nodo">
+                                                    <font>
+                                                        <Font name="Segoe UI" size="9.0" />
+                                                    </font>
+                                                    <textFill>
+                                                        <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                                    </textFill>
+                                                </Label>
+                                            </VBox>
+                                            <Label text="MÁS VENDIDO" visible="false" managed="false"
+                                                   StackPane.alignment="TOP_LEFT">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.9373" green="0.2667" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="3.0" right="6.0" bottom="3.0" left="6.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="8.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                                <StackPane.margin>
+                                                    <Insets top="8.0" right="8.0" bottom="8.0" left="8.0" />
+                                                </StackPane.margin>
+                                            </Label>
+                                        </children>
+                                    </StackPane>
+                                    <VBox spacing="3.0" VBox.vgrow="ALWAYS">
+                                        <padding>
+                                            <Insets top="8.0" right="12.0" bottom="8.0" left="12.0" />
+                                        </padding>
+                                        <Label text="ESCRITORIO">
+                                            <font>
+                                                <Font name="Segoe UI Bold" size="8.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                            </textFill>
+                                        </Label>
+                                        <Label text="Monitor Lumen 24" wrapText="true">
+                                            <font>
+                                                <Font name="Segoe UI Bold" size="13.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                            </textFill>
+                                        </Label>
+                                        <HBox alignment="CENTER_LEFT" spacing="6.0">
+                                            <Label text="\$139.900">
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="16.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                                </textFill>
+                                            </Label>
+                                            <Region HBox.hgrow="ALWAYS" />
+                                            <Label text="★ 4.8 (24)">
+                                                <font>
+                                                    <Font name="Segoe UI" size="9.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                                </textFill>
+                                            </Label>
+                                        </HBox>
+                                        <Label text="Stock: 9">
+                                            <font>
+                                                <Font name="Segoe UI" size="9.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                            </textFill>
+                                        </Label>
+                                        <Region VBox.vgrow="ALWAYS" />
+                                        <HBox spacing="6.0">
+                                            <Button text="Ver detalle" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.9373" green="0.2667" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="6.0" right="8.0" bottom="6.0" left="8.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="9.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                            </Button>
+                                            <Button text="Añadir al carrito" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.1176" green="0.1647" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="6.0" right="4.0" bottom="6.0" left="4.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="8.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                            </Button>
+                                        </HBox>
+                                    </VBox>
+                                </VBox>
+                                <VBox prefWidth="200.0" prefHeight="234.0">
+                                    <background>
+                                        <Background>
+                                            <fills>
+                                                <BackgroundFill>
+                                                    <fill>
+                                                        <Color red="1.0" green="1.0" blue="1.0" />
+                                                    </fill>
+                                                </BackgroundFill>
+                                            </fills>
+                                        </Background>
+                                    </background>
+                                    <effect>
+                                        <DropShadow radius="8.0" offsetY="2.0">
+                                            <color>
+                                                <Color red="0.0" green="0.0" blue="0.0" opacity="0.10" />
+                                            </color>
+                                        </DropShadow>
+                                    </effect>
+                                    <StackPane prefHeight="96.0">
+                                        <background>
+                                            <Background>
+                                                <fills>
+                                                    <BackgroundFill>
+                                                        <fill>
+                                                            <LinearGradient startX="0.0" startY="0.0" endX="1.0" endY="1.0">
+                                                                <stops>
+                                                                    <Stop offset="0.0">
+                                                                        <color>
+                                                                            <Color red="0.8863" green="0.9098" blue="0.9412" />
+                                                                        </color>
+                                                                    </Stop>
+                                                                    <Stop offset="1.0">
+                                                                        <color>
+                                                                            <Color red="0.9725" green="0.9804" blue="0.9882" />
+                                                                        </color>
+                                                                    </Stop>
+                                                                </stops>
+                                                            </LinearGradient>
+                                                        </fill>
+                                                    </BackgroundFill>
+                                                </fills>
+                                            </Background>
+                                        </background>
+                                        <children>
+                                            <VBox alignment="CENTER" spacing="2.0">
+                                                <Label text="🎤">
+                                                    <font>
+                                                        <Font name="Segoe UI Emoji" size="38.0" />
+                                                    </font>
+                                                    <textFill>
+                                                        <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                                    </textFill>
+                                                </Label>
+                                                <Label text="nodo">
+                                                    <font>
+                                                        <Font name="Segoe UI" size="9.0" />
+                                                    </font>
+                                                    <textFill>
+                                                        <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                                    </textFill>
+                                                </Label>
+                                            </VBox>
+                                            <Label text="MÁS VENDIDO" visible="false" managed="false"
+                                                   StackPane.alignment="TOP_LEFT">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.9373" green="0.2667" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="3.0" right="6.0" bottom="3.0" left="6.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="8.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                                <StackPane.margin>
+                                                    <Insets top="8.0" right="8.0" bottom="8.0" left="8.0" />
+                                                </StackPane.margin>
+                                            </Label>
+                                        </children>
+                                    </StackPane>
+                                    <VBox spacing="3.0" VBox.vgrow="ALWAYS">
+                                        <padding>
+                                            <Insets top="8.0" right="12.0" bottom="8.0" left="12.0" />
+                                        </padding>
+                                        <Label text="AUDIO">
+                                            <font>
+                                                <Font name="Segoe UI Bold" size="8.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                            </textFill>
+                                        </Label>
+                                        <Label text="Micrófono Claridad" wrapText="true">
+                                            <font>
+                                                <Font name="Segoe UI Bold" size="13.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                            </textFill>
+                                        </Label>
+                                        <HBox alignment="CENTER_LEFT" spacing="6.0">
+                                            <Label text="\$69.900">
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="16.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                                </textFill>
+                                            </Label>
+                                            <Region HBox.hgrow="ALWAYS" />
+                                            <Label text="★ 4.8 (24)">
+                                                <font>
+                                                    <Font name="Segoe UI" size="9.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                                </textFill>
+                                            </Label>
+                                        </HBox>
+                                        <Label text="Stock: 11">
+                                            <font>
+                                                <Font name="Segoe UI" size="9.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                            </textFill>
+                                        </Label>
+                                        <Region VBox.vgrow="ALWAYS" />
+                                        <HBox spacing="6.0">
+                                            <Button text="Ver detalle" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.9373" green="0.2667" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="6.0" right="8.0" bottom="6.0" left="8.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="9.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                            </Button>
+                                            <Button text="Añadir al carrito" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.1176" green="0.1647" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="6.0" right="4.0" bottom="6.0" left="4.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="8.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                            </Button>
+                                        </HBox>
+                                    </VBox>
+                                </VBox>
+                                <VBox prefWidth="200.0" prefHeight="234.0">
+                                    <background>
+                                        <Background>
+                                            <fills>
+                                                <BackgroundFill>
+                                                    <fill>
+                                                        <Color red="1.0" green="1.0" blue="1.0" />
+                                                    </fill>
+                                                </BackgroundFill>
+                                            </fills>
+                                        </Background>
+                                    </background>
+                                    <effect>
+                                        <DropShadow radius="8.0" offsetY="2.0">
+                                            <color>
+                                                <Color red="0.0" green="0.0" blue="0.0" opacity="0.10" />
+                                            </color>
+                                        </DropShadow>
+                                    </effect>
+                                    <StackPane prefHeight="96.0">
+                                        <background>
+                                            <Background>
+                                                <fills>
+                                                    <BackgroundFill>
+                                                        <fill>
+                                                            <LinearGradient startX="0.0" startY="0.0" endX="1.0" endY="1.0">
+                                                                <stops>
+                                                                    <Stop offset="0.0">
+                                                                        <color>
+                                                                            <Color red="0.8863" green="0.9098" blue="0.9412" />
+                                                                        </color>
+                                                                    </Stop>
+                                                                    <Stop offset="1.0">
+                                                                        <color>
+                                                                            <Color red="0.9725" green="0.9804" blue="0.9882" />
+                                                                        </color>
+                                                                    </Stop>
+                                                                </stops>
+                                                            </LinearGradient>
+                                                        </fill>
+                                                    </BackgroundFill>
+                                                </fills>
+                                            </Background>
+                                        </background>
+                                        <children>
+                                            <VBox alignment="CENTER" spacing="2.0">
+                                                <Label text="🔋">
+                                                    <font>
+                                                        <Font name="Segoe UI Emoji" size="38.0" />
+                                                    </font>
+                                                    <textFill>
+                                                        <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                                    </textFill>
+                                                </Label>
+                                                <Label text="nodo">
+                                                    <font>
+                                                        <Font name="Segoe UI" size="9.0" />
+                                                    </font>
+                                                    <textFill>
+                                                        <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                                    </textFill>
+                                                </Label>
+                                            </VBox>
+                                            <Label text="MÁS VENDIDO" visible="false" managed="false"
+                                                   StackPane.alignment="TOP_LEFT">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.9373" green="0.2667" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="3.0" right="6.0" bottom="3.0" left="6.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="8.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                                <StackPane.margin>
+                                                    <Insets top="8.0" right="8.0" bottom="8.0" left="8.0" />
+                                                </StackPane.margin>
+                                            </Label>
+                                        </children>
+                                    </StackPane>
+                                    <VBox spacing="3.0" VBox.vgrow="ALWAYS">
+                                        <padding>
+                                            <Insets top="8.0" right="12.0" bottom="8.0" left="12.0" />
+                                        </padding>
+                                        <Label text="ACCESORIOS">
+                                            <font>
+                                                <Font name="Segoe UI Bold" size="8.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                            </textFill>
+                                        </Label>
+                                        <Label text="Batería externa Porta" wrapText="true">
+                                            <font>
+                                                <Font name="Segoe UI Bold" size="13.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                            </textFill>
+                                        </Label>
+                                        <HBox alignment="CENTER_LEFT" spacing="6.0">
+                                            <Label text="\$55.900">
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="16.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="0.0588" green="0.0902" blue="0.1647" />
+                                                </textFill>
+                                            </Label>
+                                            <Region HBox.hgrow="ALWAYS" />
+                                            <Label text="★ 4.8 (24)">
+                                                <font>
+                                                    <Font name="Segoe UI" size="9.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                                </textFill>
+                                            </Label>
+                                        </HBox>
+                                        <Label text="Stock: 18">
+                                            <font>
+                                                <Font name="Segoe UI" size="9.0" />
+                                            </font>
+                                            <textFill>
+                                                <Color red="0.3922" green="0.4549" blue="0.5451" />
+                                            </textFill>
+                                        </Label>
+                                        <Region VBox.vgrow="ALWAYS" />
+                                        <HBox spacing="6.0">
+                                            <Button text="Ver detalle" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.9373" green="0.2667" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="6.0" right="8.0" bottom="6.0" left="8.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="9.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                            </Button>
+                                            <Button text="Añadir al carrito" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                <background>
+                                                    <Background>
+                                                        <fills>
+                                                            <BackgroundFill>
+                                                                <fill>
+                                                                    <Color red="0.1176" green="0.1647" blue="0.2667" />
+                                                                </fill>
+                                                            </BackgroundFill>
+                                                        </fills>
+                                                    </Background>
+                                                </background>
+                                                <padding>
+                                                    <Insets top="6.0" right="4.0" bottom="6.0" left="4.0" />
+                                                </padding>
+                                                <font>
+                                                    <Font name="Segoe UI Bold" size="8.0" />
+                                                </font>
+                                                <textFill>
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                                </textFill>
+                                            </Button>
+                                        </HBox>
+                                    </VBox>
+                                </VBox>
                             </FlowPane>
                         </content>
                     </ScrollPane>

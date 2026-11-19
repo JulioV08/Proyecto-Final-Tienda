@@ -38,17 +38,6 @@ public class ListaProductos {
         return actual.getDato();
     }
 
-    public Producto buscarPorId(int id) {
-        NodoProducto actual = cabeza;
-        while (actual != null) {
-            if (actual.getDato().getId() == id) {
-                return actual.getDato();
-            }
-            actual = actual.getSiguiente();
-        }
-        return null;
-    }
-
     public int tamanio() {
         return tamanio;
     }

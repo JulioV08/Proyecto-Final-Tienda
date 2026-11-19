@@ -7,7 +7,6 @@ import com.nodo.tienda.modelo.Producto;
 public class RepositorioProductos {
 
     private static final ListaProductos productos = new ListaProductos();
-    private static int siguienteId = 1;
 
     static {
         cargarDatosDePrueba();
@@ -17,17 +16,11 @@ public class RepositorioProductos {
     }
 
     public static void agregar(Producto producto) {
-        producto.setId(siguienteId);
-        siguienteId++;
         productos.agregar(producto);
     }
 
     public static Producto obtener(int indice) {
         return productos.obtener(indice);
-    }
-
-    public static Producto buscarPorId(int id) {
-        return productos.buscarPorId(id);
     }
 
     public static int tamanio() {
@@ -47,5 +40,11 @@ public class RepositorioProductos {
                 "Luz cálida regulable y diseño minimalista para crear un espacio de trabajo cómodo."));
         agregar(new Producto("Cargador inalámbrico Base", "Accesorios", 29900, 20, "🔌", false,
                 "Carga rápida y compatible con tus dispositivos; mantén tu escritorio ordenado y siempre listo."));
+        agregar(new Producto("Monitor Lumen 24", "Escritorio", 139900, 9, "🖥", false,
+                "Pantalla de 24 pulgadas con resolución nítida y marcos delgados para ganar espacio en tu escritorio."));
+        agregar(new Producto("Micrófono Claridad", "Audio", 69900, 11, "🎤", false,
+                "Captación clara y reducción de ruido, ideal para llamadas, grabaciones y contenido en línea."));
+        agregar(new Producto("Batería externa Porta", "Accesorios", 55900, 18, "🔋", false,
+                "Energía portátil para cargar tus dispositivos en cualquier lugar con conexión rápida y estable."));
     }
 }

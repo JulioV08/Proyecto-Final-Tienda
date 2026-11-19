@@ -1,12 +1,11 @@
 package com.nodo.tienda.controladores;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import com.nodo.tienda.App;
 import com.nodo.tienda.datos.RepositorioProductos;
 import com.nodo.tienda.datos.RepositorioUsuarios;
-import com.nodo.tienda.estructuras.Cola;
-import com.nodo.tienda.estructuras.Pila;
 import com.nodo.tienda.modelo.Producto;
 import com.nodo.tienda.modelo.Usuario;
 
@@ -37,9 +36,6 @@ public class CatalogoControlador {
     private Label mensaje;
 
     @FXML
-    private Label recomendado;
-
-    @FXML
     private FlowPane contenedorProductos;
 
     @FXML
@@ -52,16 +48,16 @@ public class CatalogoControlador {
     private ListView<String> categorias;
 
     @FXML
-    private ListView<String> busquedas;
-
-    @FXML
     private Slider precio;
 
     @FXML
     private CheckBox soloDisponibles;
 
-    private final Pila<String> historialBusquedas = new Pila<>();
-    private final Cola<Producto> recomendados = new Cola<>();
+    @FXML
+    private Label precioActual;
+
+    @FXML
+    private TextField precioExacto;
 
     @FXML
     public void initialize() {
@@ -74,20 +70,26 @@ public class CatalogoControlador {
             rol.setText(usuario.getRol());
         }
 
+        orden.getItems().clear();
         orden.getItems().addAll("Recomendados", "Precio: menor a mayor", "Precio: mayor a menor");
         orden.setValue("Recomendados");
         categorias.getSelectionModel().selectFirst();
-        busquedas.setPlaceholder(new Label("Aún no hay búsquedas."));
+
+        precioActual.setText("Hasta " + formatoPrecio((int) precio.getValue()));
+        precioExacto.setText(String.valueOf((int) precio.getValue()));
 
         busqueda.textProperty().addListener((observable, anterior, nuevo) -> aplicarFiltros());
-        precio.valueProperty().addListener((observable, anterior, nuevo) -> aplicarFiltros());
+        precio.valueProperty().addListener((observable, anterior, nuevo) -> {
+            int valor = nuevo.intValue();
+            precioActual.setText("Hasta " + formatoPrecio(valor));
+            precioExacto.setText(String.valueOf(valor));
+            aplicarFiltros();
+        });
         soloDisponibles.setOnAction(evento -> aplicarFiltros());
         orden.setOnAction(evento -> aplicarFiltros());
         categorias.getSelectionModel().selectedItemProperty()
                 .addListener((observable, anterior, nuevo) -> aplicarFiltros());
 
-        cargarRecomendados();
-        actualizarBusquedas();
         aplicarFiltros();
     }
 
@@ -168,52 +170,6 @@ public class CatalogoControlador {
         }
     }
 
-    private void cargarRecomendados() {
-        recomendados.vaciar();
-        for (int i = 0; i < RepositorioProductos.tamanio(); i++) {
-            Producto producto = RepositorioProductos.obtener(i);
-            if (producto.estaDisponible()) {
-                recomendados.encolar(producto);
-            }
-        }
-        if (recomendados.estaVacia()) {
-            for (int i = 0; i < RepositorioProductos.tamanio(); i++) {
-                recomendados.encolar(RepositorioProductos.obtener(i));
-            }
-        }
-        mostrarRecomendado();
-    }
-
-    private void mostrarRecomendado() {
-        if (recomendados.estaVacia()) {
-            recomendado.setText("No hay recomendaciones disponibles.");
-            return;
-        }
-        Producto producto = recomendados.obtener(0);
-        recomendado.setText(producto.getNombre() + " · " + producto.getPrecioTexto());
-    }
-
-    private void actualizarBusquedas() {
-        busquedas.getItems().clear();
-        int limite = Math.min(6, historialBusquedas.tamanio());
-        for (int i = 0; i < limite; i++) {
-            busquedas.getItems().add("· " + historialBusquedas.obtener(i));
-        }
-    }
-
-    private void registrarBusqueda() {
-        String texto = busqueda.getText() == null ? "" : busqueda.getText().trim();
-        if (texto.isEmpty()) {
-            return;
-        }
-        if (!historialBusquedas.estaVacia()
-                && historialBusquedas.obtener(0).equalsIgnoreCase(texto)) {
-            return;
-        }
-        historialBusquedas.apilar(texto);
-        actualizarBusquedas();
-    }
-
     public void verDetalle(Producto producto) {
         DetalleControlador.seleccionar(producto);
         App.irA("detalle");
@@ -221,23 +177,56 @@ public class CatalogoControlador {
 
     @FXML
     private void onBuscar() {
-        registrarBusqueda();
         aplicarFiltros();
     }
 
     @FXML
-    private void onSiguienteRecomendado() {
-        if (recomendados.tamanio() > 1) {
-            Producto siguiente = recomendados.desencolar();
-            recomendados.encolar(siguiente);
+    private void onAplicarPrecio() {
+        String texto = precioExacto.getText() == null
+                ? ""
+                : precioExacto.getText().replaceAll("[^0-9]", "");
+        int valor = 150000;
+        if (!texto.isEmpty()) {
+            try {
+                valor = Integer.parseInt(texto);
+            } catch (NumberFormatException e) {
+                valor = (int) precio.getValue();
+            }
         }
-        mostrarRecomendado();
+        valor = Math.max(0, Math.min(150000, valor));
+        precio.setValue(valor);
+        precioExacto.setText(String.valueOf(valor));
     }
 
     @FXML
-    private void onLimpiarBusquedas() {
-        historialBusquedas.vaciar();
-        actualizarBusquedas();
+    private void onPrecio50() {
+        precio.setValue(50000);
+    }
+
+    @FXML
+    private void onPrecio80() {
+        precio.setValue(80000);
+    }
+
+    @FXML
+    private void onPrecio120() {
+        precio.setValue(120000);
+    }
+
+    @FXML
+    private void onLimpiarFiltros() {
+        busqueda.clear();
+        categorias.getSelectionModel().selectFirst();
+        precio.setValue(150000);
+        precioExacto.setText("150000");
+        precioActual.setText("Hasta " + formatoPrecio(150000));
+        soloDisponibles.setSelected(false);
+        orden.setValue("Recomendados");
+        aplicarFiltros();
+    }
+
+    private String formatoPrecio(int valor) {
+        return String.format(Locale.forLanguageTag("es-CO"), "$%,d", valor);
     }
 
     @FXML

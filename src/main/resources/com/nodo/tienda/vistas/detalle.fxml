@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.Background?>
 <?import javafx.scene.layout.BackgroundFill?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
@@ -327,6 +328,21 @@
                     </VBox>
                 </VBox>
             </HBox>
+            <VBox fx:id="seccionRelacionados" spacing="9.0">
+                <Label text="Productos relacionados">
+                    <font>
+                        <Font name="Segoe UI Bold" size="13.0" />
+                    </font>
+                    <textFill>
+                        <Color red="0.0588" green="0.0902" blue="0.1647" />
+                    </textFill>
+                </Label>
+                <FlowPane fx:id="relacionados" hgap="12.0" vgap="10.0">
+                    <fx:include source="relacionado.fxml" />
+                    <fx:include source="relacionado.fxml" />
+                    <fx:include source="relacionado.fxml" />
+                </FlowPane>
+            </VBox>
         </VBox>
     </center>
 </BorderPane>
