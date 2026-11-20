@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Locale;
 
 import com.nodo.tienda.App;
+import com.nodo.tienda.datos.Carrito;
 import com.nodo.tienda.datos.RepositorioProductos;
 import com.nodo.tienda.datos.RepositorioUsuarios;
 import com.nodo.tienda.modelo.Producto;
@@ -173,6 +174,17 @@ public class CatalogoControlador {
     public void verDetalle(Producto producto) {
         DetalleControlador.seleccionar(producto);
         App.irA("detalle");
+    }
+
+    public void agregarAlCarrito(Producto producto) {
+        if (producto != null && producto.estaDisponible()) {
+            Carrito.agregar(producto);
+        }
+    }
+
+    @FXML
+    private void onCarrito() {
+        App.irA("carrito");
     }
 
     @FXML

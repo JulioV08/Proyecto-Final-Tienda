@@ -54,6 +54,36 @@ public class Cola<T> {
         return actual.getDato();
     }
 
+    public T eliminar(int indice) {
+        if (indice < 0 || indice >= tamanio) {
+            throw new IndexOutOfBoundsException("Índice fuera de rango: " + indice);
+        }
+
+        T dato;
+        if (tamanio == 1) {
+            dato = primero.getDato();
+            primero = null;
+            ultimo = null;
+        } else if (indice == 0) {
+            dato = primero.getDato();
+            primero = primero.getSiguiente();
+            ultimo.setSiguiente(primero);
+        } else {
+            NodoCola<T> anterior = primero;
+            for (int i = 0; i < indice - 1; i++) {
+                anterior = anterior.getSiguiente();
+            }
+            NodoCola<T> actual = anterior.getSiguiente();
+            dato = actual.getDato();
+            anterior.setSiguiente(actual.getSiguiente());
+            if (actual == ultimo) {
+                ultimo = anterior;
+            }
+        }
+        tamanio--;
+        return dato;
+    }
+
     public int tamanio() {
         return tamanio;
     }

@@ -50,6 +50,13 @@ public class TarjetaControlador {
     }
 
     @FXML
+    private void onAgregar() {
+        if (producto != null && catalogo != null) {
+            catalogo.agregarAlCarrito(producto);
+        }
+    }
+
+    @FXML
     private void onVerDetalle() {
         if (producto != null && catalogo != null) {
             catalogo.verDetalle(producto);

@@ -3,6 +3,7 @@ package com.nodo.tienda.controladores;
 import java.io.IOException;
 
 import com.nodo.tienda.App;
+import com.nodo.tienda.datos.Carrito;
 import com.nodo.tienda.datos.RepositorioProductos;
 import com.nodo.tienda.datos.RepositorioUsuarios;
 import com.nodo.tienda.modelo.Producto;
@@ -106,6 +107,18 @@ public class DetalleControlador {
     public void verRelacionado(Producto producto) {
         seleccionar(producto);
         App.irA("detalle");
+    }
+
+    @FXML
+    private void onAgregar() {
+        if (productoSeleccionado != null && productoSeleccionado.estaDisponible()) {
+            Carrito.agregar(productoSeleccionado);
+        }
+    }
+
+    @FXML
+    private void onCarrito() {
+        App.irA("carrito");
     }
 
     @FXML
