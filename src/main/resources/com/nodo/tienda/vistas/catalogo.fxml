@@ -108,6 +108,14 @@
                         <Color red="1.0" green="1.0" blue="1.0" />
                     </textFill>
                 </Button>
+                <Button onAction="#onHistorial" text="Mis compras">
+                    <font>
+                        <Font name="Segoe UI" size="11.0" />
+                    </font>
+                    <textFill>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                    </textFill>
+                </Button>
                 <VBox alignment="CENTER_RIGHT" spacing="1.0">
                     <Label fx:id="saludo" text="Lucía Martín">
                         <font>

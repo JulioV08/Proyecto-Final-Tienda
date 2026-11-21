@@ -188,6 +188,11 @@ public class CatalogoControlador {
     }
 
     @FXML
+    private void onHistorial() {
+        App.irA("historial");
+    }
+
+    @FXML
     private void onBuscar() {
         aplicarFiltros();
     }
