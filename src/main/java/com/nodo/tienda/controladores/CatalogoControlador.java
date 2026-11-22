@@ -7,6 +7,7 @@ import com.nodo.tienda.App;
 import com.nodo.tienda.datos.Carrito;
 import com.nodo.tienda.datos.RepositorioProductos;
 import com.nodo.tienda.datos.RepositorioUsuarios;
+import com.nodo.tienda.estructuras.ListaDeseos;
 import com.nodo.tienda.modelo.Producto;
 import com.nodo.tienda.modelo.Usuario;
 
@@ -190,6 +191,22 @@ public class CatalogoControlador {
     @FXML
     private void onHistorial() {
         App.irA("historial");
+    }
+
+    public void alternarDeseo(Producto producto) {
+        if (producto == null) {
+            return;
+        }
+        if (ListaDeseos.contiene(producto)) {
+            ListaDeseos.eliminar(producto);
+        } else {
+            ListaDeseos.agregar(producto);
+        }
+    }
+
+    @FXML
+    private void onDeseos() {
+        App.irA("deseos");
     }
 
     @FXML

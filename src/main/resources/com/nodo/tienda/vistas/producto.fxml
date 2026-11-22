@@ -180,7 +180,7 @@
                     <Color red="1.0" green="1.0" blue="1.0" />
                 </textFill>
             </Button>
-            <Button onAction="#onAgregar" text="Añadir al carrito" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+            <Button onAction="#onAgregar" text="Añadir" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                 <background>
                     <Background>
                         <fills>
@@ -197,6 +197,28 @@
                 </padding>
                 <font>
                     <Font name="Segoe UI Bold" size="8.0" />
+                </font>
+                <textFill>
+                    <Color red="1.0" green="1.0" blue="1.0" />
+                </textFill>
+            </Button>
+            <Button onAction="#onFavorito" text="♥" maxWidth="1.7976931348623157E308" prefWidth="38.0">
+                <background>
+                    <Background>
+                        <fills>
+                            <BackgroundFill>
+                                <fill>
+                                    <Color red="0.9373" green="0.2667" blue="0.2667" />
+                                </fill>
+                            </BackgroundFill>
+                        </fills>
+                    </Background>
+                </background>
+                <padding>
+                    <Insets top="6.0" right="4.0" bottom="6.0" left="4.0" />
+                </padding>
+                <font>
+                    <Font name="Segoe UI Bold" size="11.0" />
                 </font>
                 <textFill>
                     <Color red="1.0" green="1.0" blue="1.0" />

@@ -57,6 +57,13 @@ public class TarjetaControlador {
     }
 
     @FXML
+    private void onFavorito() {
+        if (producto != null && catalogo != null) {
+            catalogo.alternarDeseo(producto);
+        }
+    }
+
+    @FXML
     private void onVerDetalle() {
         if (producto != null && catalogo != null) {
             catalogo.verDetalle(producto);

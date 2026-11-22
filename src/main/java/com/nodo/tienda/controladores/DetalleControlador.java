@@ -6,6 +6,7 @@ import com.nodo.tienda.App;
 import com.nodo.tienda.datos.Carrito;
 import com.nodo.tienda.datos.RepositorioProductos;
 import com.nodo.tienda.datos.RepositorioUsuarios;
+import com.nodo.tienda.estructuras.ListaDeseos;
 import com.nodo.tienda.modelo.Producto;
 
 import javafx.fxml.FXML;
@@ -113,6 +114,17 @@ public class DetalleControlador {
     private void onAgregar() {
         if (productoSeleccionado != null && productoSeleccionado.estaDisponible()) {
             Carrito.agregar(productoSeleccionado);
+        }
+    }
+
+    @FXML
+    private void onFavorito() {
+        if (productoSeleccionado != null) {
+            if (ListaDeseos.contiene(productoSeleccionado)) {
+                ListaDeseos.eliminar(productoSeleccionado);
+            } else {
+                ListaDeseos.agregar(productoSeleccionado);
+            }
         }
     }
 

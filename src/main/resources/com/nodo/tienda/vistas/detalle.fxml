@@ -97,6 +97,25 @@
                     <Color red="1.0" green="1.0" blue="1.0" />
                 </textFill>
             </Button>
+            <Button onAction="#onFavorito" text="♥ Favorito">
+                <background>
+                    <Background>
+                        <fills>
+                            <BackgroundFill>
+                                <fill>
+                                    <Color red="0.9373" green="0.2667" blue="0.2667" />
+                                </fill>
+                            </BackgroundFill>
+                        </fills>
+                    </Background>
+                </background>
+                <font>
+                    <Font name="Segoe UI" size="10.0" />
+                </font>
+                <textFill>
+                    <Color red="1.0" green="1.0" blue="1.0" />
+                </textFill>
+            </Button>
             <Button onAction="#onCarrito" text="Carrito">
                 <background>
                     <Background>
