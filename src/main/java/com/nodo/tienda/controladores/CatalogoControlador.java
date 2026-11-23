@@ -184,6 +184,11 @@ public class CatalogoControlador {
     }
 
     @FXML
+    private void onInicio() {
+        App.irA("principal");
+    }
+
+    @FXML
     private void onCarrito() {
         App.irA("carrito");
     }

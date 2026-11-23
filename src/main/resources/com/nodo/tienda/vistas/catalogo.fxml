@@ -100,6 +100,14 @@
                     </font>
                 </TextField>
                 <Region HBox.hgrow="ALWAYS" />
+                <Button onAction="#onInicio" text="Inicio">
+                    <font>
+                        <Font name="Segoe UI" size="11.0" />
+                    </font>
+                    <textFill>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                    </textFill>
+                </Button>
                 <Button onAction="#onCarrito" text="Carrito">
                     <font>
                         <Font name="Segoe UI" size="11.0" />

@@ -66,6 +66,8 @@ public class RepositorioUsuarios {
     private static void cargarDatosDePrueba() {
         usuarios.agregar(new Usuario("Lucía", "Martín", "lucia.martin@email.com",
                 "+34 600 000 000", "12/05/1998", "123456", "Cliente"));
+        usuarios.agregar(new Usuario("Admin", "Nodo", "admin@nodo.com",
+                "300 000 0000", "01/01/1990", "admin123", "Administrador"));
     }
 
     private static void cargarUsuariosGuardados() {

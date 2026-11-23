@@ -39,7 +39,11 @@ public class LoginControlador {
         }
 
         RepositorioUsuarios.iniciarSesion(usuario);
-        App.irA("catalogo");
+        if (usuario.esAdministrador()) {
+            App.irA("admin");
+        } else {
+            App.irA("catalogo");
+        }
     }
 
     @FXML
