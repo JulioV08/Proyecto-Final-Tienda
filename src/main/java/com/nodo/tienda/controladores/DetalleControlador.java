@@ -8,11 +8,13 @@ import com.nodo.tienda.datos.RepositorioProductos;
 import com.nodo.tienda.datos.RepositorioUsuarios;
 import com.nodo.tienda.estructuras.ListaDeseos;
 import com.nodo.tienda.modelo.Producto;
+import com.nodo.tienda.util.Imagenes;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
@@ -22,7 +24,7 @@ public class DetalleControlador {
     private static Producto productoSeleccionado;
 
     @FXML
-    private Label icono;
+    private ImageView imagen;
 
     @FXML
     private Label etiqueta;
@@ -62,7 +64,7 @@ public class DetalleControlador {
             return;
         }
 
-        icono.setText(producto.getIcono());
+        Imagenes.aplicar(imagen, producto);
         categoria.setText(producto.getCategoria().toUpperCase());
         nombre.setText(producto.getNombre());
         precio.setText(producto.getPrecioTexto());

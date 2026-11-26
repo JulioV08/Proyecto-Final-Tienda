@@ -49,6 +49,22 @@ public class ListaEnlazada {
         return null;
     }
 
+    public void eliminar(int indice) {
+        if (indice < 0 || indice >= tamanio) {
+            throw new IndexOutOfBoundsException("Índice fuera de rango: " + indice);
+        }
+        if (indice == 0) {
+            cabeza = cabeza.getSiguiente();
+        } else {
+            Nodo anterior = cabeza;
+            for (int i = 0; i < indice - 1; i++) {
+                anterior = anterior.getSiguiente();
+            }
+            anterior.setSiguiente(anterior.getSiguiente().getSiguiente());
+        }
+        tamanio--;
+    }
+
     public int tamanio() {
         return tamanio;
     }

@@ -9,44 +9,60 @@ https://www.figma.com/design/YmSj5F8fhFY8r8YTP63SRG/Actividad-06-Prototipo?node-
 ## Módulos Diseñados
 - *Acceso:* Login y Registro de usuarios.
 - *Cliente:* Catálogo con filtros, Historial de Compras y Lista de Favoritos.
-- *Administrador:* Dashboard de Gestión de Inventario (con búsqueda por ID y edición) y Formulario de Registro de Productos.
+- *Administrador:* sección independiente con Inventario, Pedidos, Usuarios, Reportes y Configuración; registro y eliminación de productos con imagen, control de usuarios y umbral de stock.
 
 ## Integrantes
 - Julio Cesar Vidal Herazo
 - Camilo Andrés Palmera Fernández
 - Juan Andrés Torres Peña
 
-## Entrega actual
-Avance del proyecto de Programación. Esta entrega incluye únicamente el acceso de usuarios y el catálogo de productos.
+## Entrega final
+Proyecto completo de acceso, catálogo, carrito, historial, lista de deseos y panel de administración.
 
 ## Módulos de esta entrega
 
-- Login de usuarios con validaciones.
+- Login de usuarios con validaciones y roles.
 - Registro de cuentas con confirmación de contraseña.
 - Sesión de usuario y cierre de sesión.
 - Catálogo con tarjetas de producto.
-- Detalle del producto.
+- Detalle del producto y productos relacionados.
 - Búsqueda por nombre o categoría.
 - Filtros por categoría, precio y disponibilidad.
 - Precio máximo visible y editable, con rangos rápidos.
 - Botón `Limpiar filtro` que restablece búsqueda, categoría, precio, disponibilidad y orden.
 - Orden por precio.
-- Productos relacionados en el detalle.
-- En cada tarjeta, botón `Ver detalle` y botón `Añadir al carrito` (solo visual).
+- Carrito de compras con cantidades.
+- Historial de compras.
+- Lista de deseos.
+- Categorías nuevas: Consolas, Celulares y Electrodomésticos. Dos productos nuevos por categoría.
+- Carrito, historial y lista de deseos también se guardan en archivos propios.
+- Panel de administración con resumen de inventario.
+- Registrar productos nuevos con imagen desde la interfaz; la imagen se copia al proyecto y viaja en el ZIP.
+- Eliminar productos del inventario.
+- Agregar unidades hasta un **tope máximo** editable por producto.
+- Tope máximo por producto y búsqueda de productos por ID o nombre.
+- Secciones de administración: Inventario, Pedidos, Usuarios, Reportes y Configuración.
+- Control de usuarios: buscar, hacer administrador, quitar administrador y eliminar (la cuenta principal está protegida).
+- Alertas JavaFX (`Alert`) para confirmar compras, vaciar el carrito y guardar productos.
 
 ## Estructuras propias
 
 - `ListaEnlazada`: usuarios registrados.
 - `ListaProductos`: productos del catálogo.
+- `Cola`: carrito de compras.
+- `Pila`: historial de compras.
+- `ListaDeseos`: productos favoritos.
 
-El proyecto también conserva las clases `Pila` y `Cola` con nodos propios. No se utiliza `java.util.Stack`.
+Todas usan nodos propios. No se utiliza `java.util.Stack`.
+
+En la versión final, la `Cola` alimenta el carrito y la `Pila` guarda el historial de compras. El **Manual de Usuario del Sistema** está en `MANUAL_USUARIO.md`, `MANUAL_USUARIO.html` y `MANUAL_USUARIO.pdf`, con capturas explicadas paso a paso dentro de cada sección.
 
 ## Cuentas
 
-- Usuario de prueba: `lucia.martin@email.com` / `123456`
+- Cliente: `lucia.martin@email.com` / `123456`
+- Administrador: `admin@nodo.com` / `admin123`
 - También puedes crear una cuenta nueva desde el formulario **Registro**. Se puede iniciar sesión con ella desde ese mismo momento.
 - Las cuentas nuevas se guardan en `usuarios.txt`, en la carpeta del proyecto. Al volver a abrir el programa, ese archivo se lee y las cuentas siguen ahí.
-- Por ahora solo hay un usuario de prueba; no hay usuario administrador.
 
 ## Requisitos
 
@@ -77,6 +93,7 @@ src/main/java/com/nodo/tienda/
   datos/
   estructuras/
   modelo/
+  util/
 src/main/resources/com/nodo/tienda/vistas/
   login.fxml
   registro.fxml
@@ -84,6 +101,27 @@ src/main/resources/com/nodo/tienda/vistas/
   producto.fxml
   detalle.fxml
   relacionado.fxml
+  carrito.fxml
+  historial.fxml
+  deseos.fxml
+  admin.fxml
+  nuevo-producto.fxml
+  pedidos.fxml
+  usuarios.fxml
+  reportes.fxml
+  configuracion.fxml
+  cuenta.fxml
+    imagenes/
+    auriculares.png
+    teclado.png
+    altavoz.png
+    raton.png
+    lampara.png
+    cargador.png
+    monitor.png
+    microfono.png
+    bateria.png
+    producto.png
 ```
 
 ## Avances
@@ -100,6 +138,13 @@ src/main/resources/com/nodo/tienda/vistas/
 | 17/11/2026 | Avance 8 | Pila de búsquedas recientes y cola de recomendados. |
 | 18/11/2026 | Avance 9 | Validaciones finales, sesión y documentación. |
 | 19/11/2026 | Avance 10 | Precio máximo editable y productos relacionados. |
+| 20/11/2026 | Avance 11 | Carrito de compras con cola circular y totales. |
+| 21/11/2026 | Avance 12 | Historial de compras con pila y finalización de compra. |
+| 22/11/2026 | Avance 13 | Lista de deseos con estructura propia. |
+| 23/11/2026 | Avance 14 | Roles de cliente y administrador con panel de resumen. |
+| 25/11/2026 | Avance 15 | Panel de administración completo: inventario, pedidos, usuarios, reportes, configuración y fotografías reales. |
+
+Las estructuras de pila y cola de los primeros avances se consolidaron en la versión final como el historial de compras y el carrito, respectivamente.
 
 ## Avance 1 — Acceso de usuarios
 
@@ -122,7 +167,7 @@ src/main/resources/com/nodo/tienda/vistas/
 - Modelo `Producto` con nombre, categoría, precio, stock, ícono, descripción y estado destacado.
 - Productos guardados en memoria con `NodoProducto` y `ListaProductos`.
 - Catálogo inicial en forma de lista con los datos principales.
-- Nueve productos de prueba de distintas categorías.
+- 26 productos de prueba de distintas categorías.
 
 ## Avance 4 — Catálogo visual
 
@@ -177,10 +222,49 @@ src/main/resources/com/nodo/tienda/vistas/
 
 ## Avance 10 — Precio claro y productos relacionados
 
-- El filtro de precio muestra el valor actual como `Hasta $150.000`.
+- El filtro de precio muestra el valor actual como `Hasta $2.000.000`.
 - El precio máximo se puede escribir en un campo y aplicar con Enter o con el botón `Aplicar`.
 - Botones rápidos para ver todos los productos o limitar el precio a 50.000, 80.000 o 120.000.
 - La barra lateral del catálogo se puede desplazar cuando la ventana es pequeña.
 - El detalle muestra hasta tres productos de la misma categoría.
 - Al seleccionar un producto relacionado se abre su propia vista de detalle.
 - Si no hay productos relacionados, la sección se oculta automáticamente.
+
+
+## Avance 11 — Carrito de compras
+
+- El botón `Añadir` de cada tarjeta y del detalle agrega el producto al carrito.
+- El carrito usa una `Cola` circular propia y permite aumentar, disminuir, quitar y vaciar.
+- La vista `carrito.fxml` muestra los productos agrupados con su subtotal y el total.
+
+## Avance 12 — Historial de compras
+
+- El botón `Finalizar compra` guarda la compra en una `Pila`.
+- La vista `historial.fxml` muestra las compras con fecha, cantidad de productos y total.
+
+## Avance 13 — Lista de deseos
+
+- El botón de favorito agrega o quita productos de una `ListaDeseos` propia.
+- La vista `deseos.fxml` permite ver y quitar los productos guardados.
+
+## Avance 14 — Roles y administración
+
+- El login dirige a los clientes al catálogo y a los administradores al panel.
+- La vista `principal.fxml` muestra la bienvenida del usuario.
+- El panel `admin.fxml` muestra resumen de productos, unidades, agotados, stock bajo y valor del inventario.
+
+## Avance 15 — Panel de administración
+
+- Los 26 productos iniciales reciben un ID automático y consecutivo.
+- El panel de administración busca productos por ID y permite editarlos.
+- El campo **Cantidad a sumar** y el botón **+ Unidades** aumentan el stock del producto seleccionado o buscado por ID o nombre.
+- Las alertas JavaFX (`Alert`) confirman compras, vaciado de carrito, cambios de stock y creación de cuentas.
+- Se agregan la guía de exposición y las capturas de las vistas.
+
+## Imágenes de productos
+
+- El catálogo, el detalle y los productos relacionados muestran una fotografía real para cada producto.
+- Las imágenes se guardan en `src/main/resources/com/nodo/tienda/vistas/imagenes/`.
+- Cada producto resuelve su imagen desde el modelo con `getImagen()`.
+- Las tarjetas y el detalle usan `ImageView` y conservan la marca **nodo**.
+- Los productos nuevos sin una imagen asignada usan una imagen genérica de respaldo.

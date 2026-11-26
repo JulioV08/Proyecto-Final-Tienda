@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import com.nodo.tienda.App;
 import com.nodo.tienda.datos.RepositorioUsuarios;
 import com.nodo.tienda.modelo.Usuario;
+import com.nodo.tienda.util.Alertas;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
@@ -93,6 +94,7 @@ public class RegistroControlador {
         RepositorioUsuarios.registrar(nuevoUsuario);
         limpiarCampos();
         mostrarMensaje("¡Cuenta creada con éxito! Ya puedes iniciar sesión.");
+        Alertas.info("Cuenta creada", "Ya puedes iniciar sesión con tu correo.");
     }
 
     @FXML

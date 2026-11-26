@@ -38,6 +38,38 @@ public class ListaProductos {
         return actual.getDato();
     }
 
+    public Producto buscarPorId(int id) {
+        NodoProducto actual = cabeza;
+        while (actual != null) {
+            if (actual.getDato().getId() == id) {
+                return actual.getDato();
+            }
+            actual = actual.getSiguiente();
+        }
+        return null;
+    }
+
+    public boolean eliminarPorId(int id) {
+        if (cabeza == null) {
+            return false;
+        }
+        if (cabeza.getDato().getId() == id) {
+            cabeza = cabeza.getSiguiente();
+            tamanio--;
+            return true;
+        }
+        NodoProducto anterior = cabeza;
+        while (anterior.getSiguiente() != null) {
+            if (anterior.getSiguiente().getDato().getId() == id) {
+                anterior.setSiguiente(anterior.getSiguiente().getSiguiente());
+                tamanio--;
+                return true;
+            }
+            anterior = anterior.getSiguiente();
+        }
+        return false;
+    }
+
     public int tamanio() {
         return tamanio;
     }

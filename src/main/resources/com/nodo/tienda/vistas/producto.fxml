@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Background?>
 <?import javafx.scene.layout.BackgroundFill?>
 <?import javafx.scene.layout.HBox?>
@@ -17,8 +19,7 @@
 
 <VBox xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.nodo.tienda.controladores.TarjetaControlador"
-      onMouseClicked="#onDetalle"
-      prefWidth="200.0" prefHeight="234.0">
+      prefWidth="260.0" prefHeight="310.0">
     <background>
         <Background>
             <fills>
@@ -37,7 +38,7 @@
             </color>
         </DropShadow>
     </effect>
-    <StackPane prefHeight="96.0">
+    <StackPane prefHeight="136.0">
         <background>
             <Background>
                 <fills>
@@ -63,24 +64,15 @@
             </Background>
         </background>
         <children>
-            <VBox alignment="CENTER" spacing="2.0">
-                <Label fx:id="icono" text="🎧">
-                    <font>
-                        <Font name="Segoe UI Emoji" size="38.0" />
-                    </font>
-                    <textFill>
-                        <Color red="0.0588" green="0.0902" blue="0.1647" />
-                    </textFill>
-                </Label>
-                <Label text="nodo">
-                    <font>
-                        <Font name="Segoe UI" size="9.0" />
-                    </font>
-                    <textFill>
-                        <Color red="0.3922" green="0.4549" blue="0.5451" />
-                    </textFill>
-                </Label>
-            </VBox>
+            <ImageView fx:id="imagen" fitWidth="246.0" fitHeight="126.0" preserveRatio="true" smooth="true">
+
+                <image>
+
+                    <Image url="@imagenes/auriculares.png" />
+
+                </image>
+
+            </ImageView>
             <Label fx:id="etiqueta" text="MÁS VENDIDO" visible="false" managed="false"
                    StackPane.alignment="TOP_LEFT">
                 <background>
@@ -115,7 +107,7 @@
         </padding>
         <Label fx:id="categoria" text="CATEGORÍA">
             <font>
-                <Font name="Segoe UI Bold" size="8.0" />
+                <Font name="Segoe UI Bold" size="10.0" />
             </font>
             <textFill>
                 <Color red="0.3922" green="0.4549" blue="0.5451" />
@@ -123,7 +115,7 @@
         </Label>
         <Label fx:id="nombre" text="Producto" wrapText="true">
             <font>
-                <Font name="Segoe UI Bold" size="13.0" />
+                <Font name="Segoe UI Bold" size="16.0" />
             </font>
             <textFill>
                 <Color red="0.0588" green="0.0902" blue="0.1647" />
@@ -132,7 +124,7 @@
         <HBox alignment="CENTER_LEFT" spacing="6.0">
             <Label fx:id="precio" text="Precio">
                 <font>
-                    <Font name="Segoe UI Bold" size="16.0" />
+                    <Font name="Segoe UI Bold" size="19.0" />
                 </font>
                 <textFill>
                     <Color red="0.0588" green="0.0902" blue="0.1647" />
@@ -150,7 +142,7 @@
         </HBox>
         <Label fx:id="stock" text="Stock">
             <font>
-                <Font name="Segoe UI" size="9.0" />
+                <Font name="Segoe UI" size="11.0" />
             </font>
             <textFill>
                 <Color red="0.3922" green="0.4549" blue="0.5451" />

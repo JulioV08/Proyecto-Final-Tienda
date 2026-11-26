@@ -19,8 +19,22 @@ public class RepositorioUsuarios {
     private static Usuario usuarioActual;
 
     static {
-        cargarDatosDePrueba();
-        cargarUsuariosGuardados();
+        if (Files.exists(ARCHIVO)) {
+            cargarUsuariosGuardados();
+        } else {
+            cargarDatosDePrueba();
+            guardarUsuarios();
+        }
+        if (!existeAdministrador()) {
+            Usuario principal = buscarPorCorreo("admin@nodo.com");
+            if (principal == null) {
+                usuarios.agregar(new Usuario("Admin", "Nodo", "admin@nodo.com",
+                        "300 000 0000", "01/01/1990", "admin123", "Administrador"));
+            } else {
+                principal.setRol("Administrador");
+            }
+            guardarUsuarios();
+        }
     }
 
     private RepositorioUsuarios() {
@@ -59,8 +73,47 @@ public class RepositorioUsuarios {
         return null;
     }
 
+    public static Usuario obtener(int indice) {
+        return usuarios.obtener(indice);
+    }
+
+    public static void eliminar(int indice) {
+        usuarios.eliminar(indice);
+        guardarUsuarios();
+    }
+
+    public static void hacerAdmin(int indice) {
+        usuarios.obtener(indice).setRol("Administrador");
+        guardarUsuarios();
+    }
+
+    public static void quitarAdmin(int indice) {
+        usuarios.obtener(indice).setRol("Cliente");
+        guardarUsuarios();
+    }
+
+    public static void guardar() {
+        guardarUsuarios();
+    }
+
+    public static void incrementarPedidos() {
+        if (usuarioActual != null) {
+            usuarioActual.incrementarPedidos();
+            guardarUsuarios();
+        }
+    }
+
     public static int tamanio() {
         return usuarios.tamanio();
+    }
+
+    private static boolean existeAdministrador() {
+        for (int i = 0; i < usuarios.tamanio(); i++) {
+            if (usuarios.obtener(i).esAdministrador()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static void cargarDatosDePrueba() {
@@ -85,8 +138,16 @@ public class RepositorioUsuarios {
                     continue;
                 }
                 if (!existeCorreo(datos[2])) {
-                    usuarios.agregar(new Usuario(datos[0], datos[1], datos[2], datos[3],
-                            datos[4], datos[5], datos[6]));
+                    Usuario usuario = new Usuario(datos[0], datos[1], datos[2], datos[3],
+                            datos[4], datos[5], datos[6]);
+                    if (datos.length >= 8) {
+                        try {
+                            usuario.setPedidos(Integer.parseInt(datos[7]));
+                        } catch (NumberFormatException e) {
+                            usuario.setPedidos(0);
+                        }
+                    }
+                    usuarios.agregar(usuario);
                 }
             }
         } catch (IOException e) {
@@ -101,7 +162,7 @@ public class RepositorioUsuarios {
                 escritor.write(usuario.getNombre() + "|" + usuario.getApellidos() + "|"
                         + usuario.getCorreo() + "|" + usuario.getTelefono() + "|"
                         + usuario.getFechaNacimiento() + "|" + usuario.getContrasena() + "|"
-                        + usuario.getRol());
+                        + usuario.getRol() + "|" + usuario.getPedidos());
                 escritor.newLine();
             }
         } catch (IOException e) {

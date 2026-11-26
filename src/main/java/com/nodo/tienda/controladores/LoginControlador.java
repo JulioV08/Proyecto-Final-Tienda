@@ -51,11 +51,6 @@ public class LoginControlador {
         App.irA("registro");
     }
 
-    @FXML
-    private void onOlvidar() {
-        mostrarMensaje("Contacta al administrador de la tienda para recuperar tu cuenta.");
-    }
-
     private void mostrarMensaje(String texto) {
         mensaje.setText(texto);
         mensaje.setVisible(true);

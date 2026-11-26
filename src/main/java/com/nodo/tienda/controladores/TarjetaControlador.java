@@ -1,18 +1,17 @@
 package com.nodo.tienda.controladores;
 
 import com.nodo.tienda.modelo.Producto;
+import com.nodo.tienda.util.Imagenes;
 
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.image.ImageView;
 
 
 public class TarjetaControlador {
 
     @FXML
-    private Label icono;
+    private ImageView imagen;
 
     @FXML
     private Label etiqueta;
@@ -37,7 +36,7 @@ public class TarjetaControlador {
         this.producto = producto;
         this.catalogo = catalogo;
 
-        icono.setText(producto.getIcono());
+        Imagenes.aplicar(imagen, producto);
         categoria.setText(producto.getCategoria().toUpperCase());
         nombre.setText(producto.getNombre());
         precio.setText(producto.getPrecioTexto());
@@ -68,17 +67,5 @@ public class TarjetaControlador {
         if (producto != null && catalogo != null) {
             catalogo.verDetalle(producto);
         }
-    }
-
-    @FXML
-    private void onDetalle(MouseEvent evento) {
-        Object origen = evento.getTarget();
-        while (origen instanceof Node) {
-            if (origen instanceof Button) {
-                return;
-            }
-            origen = ((Node) origen).getParent();
-        }
-        onVerDetalle();
     }
 }

@@ -29,9 +29,6 @@ public class CatalogoControlador {
     private Label saludo;
 
     @FXML
-    private Label rol;
-
-    @FXML
     private Label contador;
 
     @FXML
@@ -64,13 +61,7 @@ public class CatalogoControlador {
     @FXML
     public void initialize() {
         Usuario usuario = RepositorioUsuarios.getUsuario();
-        if (usuario == null) {
-            saludo.setText("Invitado");
-            rol.setText("Sin sesión");
-        } else {
-            saludo.setText(usuario.getNombreCompleto());
-            rol.setText(usuario.getRol());
-        }
+        saludo.setText(usuario == null ? "Hola" : "Hola " + usuario.getNombre());
 
         orden.getItems().clear();
         orden.getItems().addAll("Recomendados", "Precio: menor a mayor", "Precio: mayor a menor");
@@ -92,6 +83,8 @@ public class CatalogoControlador {
         categorias.getSelectionModel().selectedItemProperty()
                 .addListener((observable, anterior, nuevo) -> aplicarFiltros());
 
+        contenedorProductos.prefWrapLengthProperty().bind(
+                contenedorProductos.widthProperty().subtract(20.0));
         aplicarFiltros();
     }
 
@@ -184,11 +177,6 @@ public class CatalogoControlador {
     }
 
     @FXML
-    private void onInicio() {
-        App.irA("principal");
-    }
-
-    @FXML
     private void onCarrito() {
         App.irA("carrito");
     }
@@ -215,6 +203,11 @@ public class CatalogoControlador {
     }
 
     @FXML
+    private void onCuenta() {
+        App.irA("cuenta-cliente");
+    }
+
+    @FXML
     private void onBuscar() {
         aplicarFiltros();
     }
@@ -224,7 +217,7 @@ public class CatalogoControlador {
         String texto = precioExacto.getText() == null
                 ? ""
                 : precioExacto.getText().replaceAll("[^0-9]", "");
-        int valor = 150000;
+        int valor = 2000000;
         if (!texto.isEmpty()) {
             try {
                 valor = Integer.parseInt(texto);
@@ -232,9 +225,15 @@ public class CatalogoControlador {
                 valor = (int) precio.getValue();
             }
         }
-        valor = Math.max(0, Math.min(150000, valor));
+        valor = Math.max(0, Math.min(2000000, valor));
         precio.setValue(valor);
         precioExacto.setText(String.valueOf(valor));
+    }
+
+    @FXML
+    private void onPrecioTodos() {
+        precio.setValue(2000000);
+        precioExacto.setText("2000000");
     }
 
     @FXML
@@ -256,9 +255,9 @@ public class CatalogoControlador {
     private void onLimpiarFiltros() {
         busqueda.clear();
         categorias.getSelectionModel().selectFirst();
-        precio.setValue(150000);
-        precioExacto.setText("150000");
-        precioActual.setText("Hasta " + formatoPrecio(150000));
+        precio.setValue(2000000);
+        precioExacto.setText("2000000");
+        precioActual.setText("Hasta " + formatoPrecio(2000000));
         soloDisponibles.setSelected(false);
         orden.setValue("Recomendados");
         aplicarFiltros();

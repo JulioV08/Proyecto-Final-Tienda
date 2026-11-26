@@ -12,6 +12,8 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Background?>
 <?import javafx.scene.layout.BackgroundFill?>
 <?import javafx.scene.layout.BorderPane?>
@@ -100,56 +102,102 @@
                     </font>
                 </TextField>
                 <Region HBox.hgrow="ALWAYS" />
-                <Button onAction="#onInicio" text="Inicio">
-                    <font>
-                        <Font name="Segoe UI" size="11.0" />
-                    </font>
-                    <textFill>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                    </textFill>
-                </Button>
                 <Button onAction="#onCarrito" text="Carrito">
+                    <background>
+                        <Background>
+                            <fills>
+                                <BackgroundFill>
+                                    <fill>
+                                        <Color red="1.0" green="1.0" blue="1.0" />
+                                    </fill>
+                                </BackgroundFill>
+                            </fills>
+                        </Background>
+                    </background>
+                    <padding>
+                        <Insets top="6.0" right="10.0" bottom="6.0" left="10.0" />
+                    </padding>
                     <font>
-                        <Font name="Segoe UI" size="11.0" />
+                        <Font name="Segoe UI Bold" size="11.0" />
                     </font>
                     <textFill>
-                        <Color red="1.0" green="1.0" blue="1.0" />
+                        <Color red="0.0667" green="0.0941" blue="0.1529" />
                     </textFill>
                 </Button>
                 <Button onAction="#onHistorial" text="Mis compras">
+                    <background>
+                        <Background>
+                            <fills>
+                                <BackgroundFill>
+                                    <fill>
+                                        <Color red="1.0" green="1.0" blue="1.0" />
+                                    </fill>
+                                </BackgroundFill>
+                            </fills>
+                        </Background>
+                    </background>
+                    <padding>
+                        <Insets top="6.0" right="10.0" bottom="6.0" left="10.0" />
+                    </padding>
                     <font>
-                        <Font name="Segoe UI" size="11.0" />
+                        <Font name="Segoe UI Bold" size="11.0" />
                     </font>
                     <textFill>
-                        <Color red="1.0" green="1.0" blue="1.0" />
+                        <Color red="0.0667" green="0.0941" blue="0.1529" />
                     </textFill>
                 </Button>
                 <Button onAction="#onDeseos" text="Deseos">
+                    <background>
+                        <Background>
+                            <fills>
+                                <BackgroundFill>
+                                    <fill>
+                                        <Color red="1.0" green="1.0" blue="1.0" />
+                                    </fill>
+                                </BackgroundFill>
+                            </fills>
+                        </Background>
+                    </background>
+                    <padding>
+                        <Insets top="6.0" right="10.0" bottom="6.0" left="10.0" />
+                    </padding>
                     <font>
-                        <Font name="Segoe UI" size="11.0" />
+                        <Font name="Segoe UI Bold" size="11.0" />
+                    </font>
+                    <textFill>
+                        <Color red="0.0667" green="0.0941" blue="0.1529" />
+                    </textFill>
+                </Button>
+                <Button onAction="#onCuenta" text="Mi cuenta">
+                    <background>
+                        <Background>
+                            <fills>
+                                <BackgroundFill>
+                                    <fill>
+                                        <Color red="1.0" green="1.0" blue="1.0" />
+                                    </fill>
+                                </BackgroundFill>
+                            </fills>
+                        </Background>
+                    </background>
+                    <padding>
+                        <Insets top="6.0" right="10.0" bottom="6.0" left="10.0" />
+                    </padding>
+                    <font>
+                        <Font name="Segoe UI Bold" size="11.0" />
+                    </font>
+                    <textFill>
+                        <Color red="0.0667" green="0.0941" blue="0.1529" />
+                    </textFill>
+                </Button>
+                <Label fx:id="saludo" text="Hola Lucía">
+                    <font>
+                        <Font name="Segoe UI Bold" size="12.0" />
                     </font>
                     <textFill>
                         <Color red="1.0" green="1.0" blue="1.0" />
                     </textFill>
-                </Button>
-                <VBox alignment="CENTER_RIGHT" spacing="1.0">
-                    <Label fx:id="saludo" text="Lucía Martín">
-                        <font>
-                            <Font name="Segoe UI Bold" size="11.0" />
-                        </font>
-                        <textFill>
-                            <Color red="1.0" green="1.0" blue="1.0" />
-                        </textFill>
-                    </Label>
-                    <Label fx:id="rol" text="Cliente">
-                        <font>
-                            <Font name="Segoe UI" size="9.0" />
-                        </font>
-                        <textFill>
-                            <Color red="0.7922" green="0.8353" blue="0.9020" />
-                        </textFill>
-                    </Label>
-                </VBox>
+                </Label>
                 <Button onAction="#onCerrarSesion" text="Cerrar sesión">
                     <background>
                         <Background>
@@ -293,6 +341,9 @@
                                 <String fx:value="Escritorio" />
                                 <String fx:value="Iluminación" />
                                 <String fx:value="Accesorios" />
+                        <String fx:value="Consolas" />
+                        <String fx:value="Celulares" />
+                        <String fx:value="Electrodomésticos" />
                             </FXCollections>
                         </items>
                     </ListView>
@@ -304,7 +355,7 @@
                             <Color red="0.3922" green="0.4549" blue="0.5451" />
                         </textFill>
                     </Label>
-                    <Label fx:id="precioActual" text="Hasta $150.000">
+                    <Label fx:id="precioActual" text="Hasta $2.000.000">
                         <font>
                             <Font name="Segoe UI Bold" size="12.0" />
                         </font>
@@ -312,11 +363,11 @@
                             <Color red="0.0588" green="0.0902" blue="0.1647" />
                         </textFill>
                     </Label>
-                    <Slider fx:id="precio" min="0.0" max="150000.0" value="150000.0"
-                            blockIncrement="1000.0" />
+                    <Slider fx:id="precio" min="0.0" max="2000000.0" value="2000000.0"
+                            blockIncrement="10000.0" />
                     <HBox alignment="CENTER_LEFT" spacing="5.0">
                         <TextField fx:id="precioExacto" onAction="#onAplicarPrecio"
-                                   prefHeight="30.0" promptText="150000" HBox.hgrow="ALWAYS">
+                                   prefHeight="30.0" promptText="2000000" HBox.hgrow="ALWAYS">
                             <font>
                                 <Font name="Segoe UI" size="10.0" />
                             </font>
@@ -449,6 +500,26 @@
                                 </Background>
                             </background>
                         </Button>
+                        <Button onAction="#onPrecioTodos" text="Todos" maxWidth="Infinity"
+                                prefHeight="26.0" HBox.hgrow="ALWAYS">
+                            <font>
+                                <Font name="Segoe UI Bold" size="8.0" />
+                            </font>
+                            <textFill>
+                                <Color red="1.0" green="1.0" blue="1.0" />
+                            </textFill>
+                            <background>
+                                <Background>
+                                    <fills>
+                                        <BackgroundFill>
+                                            <fill>
+                                                <Color red="0.1137" green="0.5216" blue="0.3255" />
+                                            </fill>
+                                        </BackgroundFill>
+                                    </fills>
+                                </Background>
+                            </background>
+                        </Button>
                     </HBox>
                     <CheckBox fx:id="soloDisponibles" text="Solo productos disponibles">
                         <font>
@@ -516,7 +587,7 @@
                             <Color red="0.9373" green="0.2667" blue="0.2667" />
                         </textFill>
                     </Label>
-                    <ScrollPane fitToWidth="false" prefWidth="650.0" minWidth="650.0" VBox.vgrow="ALWAYS">
+                    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
                         <background>
                             <Background>
                                 <fills>
@@ -579,24 +650,15 @@
                                             </Background>
                                         </background>
                                         <children>
-                                            <VBox alignment="CENTER" spacing="2.0">
-                                                <Label text="🎧">
-                                                    <font>
-                                                        <Font name="Segoe UI Emoji" size="38.0" />
-                                                    </font>
-                                                    <textFill>
-                                                        <Color red="0.0588" green="0.0902" blue="0.1647" />
-                                                    </textFill>
-                                                </Label>
-                                                <Label text="nodo">
-                                                    <font>
-                                                        <Font name="Segoe UI" size="9.0" />
-                                                    </font>
-                                                    <textFill>
-                                                        <Color red="0.3922" green="0.4549" blue="0.5451" />
-                                                    </textFill>
-                                                </Label>
-                                            </VBox>
+                                            <ImageView fitWidth="190.0" fitHeight="86.0" preserveRatio="true" smooth="true">
+
+                                                <image>
+
+                                                    <Image url="@imagenes/auriculares.png" />
+
+                                                </image>
+
+                                            </ImageView>
                                             <Label text="MÁS VENDIDO" visible="true" managed="true"
                                                    StackPane.alignment="TOP_LEFT">
                                                 <background>
@@ -766,24 +828,15 @@
                                             </Background>
                                         </background>
                                         <children>
-                                            <VBox alignment="CENTER" spacing="2.0">
-                                                <Label text="⌨">
-                                                    <font>
-                                                        <Font name="Segoe UI Emoji" size="38.0" />
-                                                    </font>
-                                                    <textFill>
-                                                        <Color red="0.0588" green="0.0902" blue="0.1647" />
-                                                    </textFill>
-                                                </Label>
-                                                <Label text="nodo">
-                                                    <font>
-                                                        <Font name="Segoe UI" size="9.0" />
-                                                    </font>
-                                                    <textFill>
-                                                        <Color red="0.3922" green="0.4549" blue="0.5451" />
-                                                    </textFill>
-                                                </Label>
-                                            </VBox>
+                                            <ImageView fitWidth="190.0" fitHeight="86.0" preserveRatio="true" smooth="true">
+
+                                                <image>
+
+                                                    <Image url="@imagenes/teclado.png" />
+
+                                                </image>
+
+                                            </ImageView>
                                             <Label text="MÁS VENDIDO" visible="false" managed="false"
                                                    StackPane.alignment="TOP_LEFT">
                                                 <background>
@@ -953,24 +1006,15 @@
                                             </Background>
                                         </background>
                                         <children>
-                                            <VBox alignment="CENTER" spacing="2.0">
-                                                <Label text="🔊">
-                                                    <font>
-                                                        <Font name="Segoe UI Emoji" size="38.0" />
-                                                    </font>
-                                                    <textFill>
-                                                        <Color red="0.0588" green="0.0902" blue="0.1647" />
-                                                    </textFill>
-                                                </Label>
-                                                <Label text="nodo">
-                                                    <font>
-                                                        <Font name="Segoe UI" size="9.0" />
-                                                    </font>
-                                                    <textFill>
-                                                        <Color red="0.3922" green="0.4549" blue="0.5451" />
-                                                    </textFill>
-                                                </Label>
-                                            </VBox>
+                                            <ImageView fitWidth="190.0" fitHeight="86.0" preserveRatio="true" smooth="true">
+
+                                                <image>
+
+                                                    <Image url="@imagenes/altavoz.png" />
+
+                                                </image>
+
+                                            </ImageView>
                                             <Label text="MÁS VENDIDO" visible="false" managed="false"
                                                    StackPane.alignment="TOP_LEFT">
                                                 <background>
@@ -1140,24 +1184,15 @@
                                             </Background>
                                         </background>
                                         <children>
-                                            <VBox alignment="CENTER" spacing="2.0">
-                                                <Label text="🖱">
-                                                    <font>
-                                                        <Font name="Segoe UI Emoji" size="38.0" />
-                                                    </font>
-                                                    <textFill>
-                                                        <Color red="0.0588" green="0.0902" blue="0.1647" />
-                                                    </textFill>
-                                                </Label>
-                                                <Label text="nodo">
-                                                    <font>
-                                                        <Font name="Segoe UI" size="9.0" />
-                                                    </font>
-                                                    <textFill>
-                                                        <Color red="0.3922" green="0.4549" blue="0.5451" />
-                                                    </textFill>
-                                                </Label>
-                                            </VBox>
+                                            <ImageView fitWidth="190.0" fitHeight="86.0" preserveRatio="true" smooth="true">
+
+                                                <image>
+
+                                                    <Image url="@imagenes/raton.png" />
+
+                                                </image>
+
+                                            </ImageView>
                                             <Label text="MÁS VENDIDO" visible="false" managed="false"
                                                    StackPane.alignment="TOP_LEFT">
                                                 <background>
@@ -1327,24 +1362,15 @@
                                             </Background>
                                         </background>
                                         <children>
-                                            <VBox alignment="CENTER" spacing="2.0">
-                                                <Label text="💡">
-                                                    <font>
-                                                        <Font name="Segoe UI Emoji" size="38.0" />
-                                                    </font>
-                                                    <textFill>
-                                                        <Color red="0.0588" green="0.0902" blue="0.1647" />
-                                                    </textFill>
-                                                </Label>
-                                                <Label text="nodo">
-                                                    <font>
-                                                        <Font name="Segoe UI" size="9.0" />
-                                                    </font>
-                                                    <textFill>
-                                                        <Color red="0.3922" green="0.4549" blue="0.5451" />
-                                                    </textFill>
-                                                </Label>
-                                            </VBox>
+                                            <ImageView fitWidth="190.0" fitHeight="86.0" preserveRatio="true" smooth="true">
+
+                                                <image>
+
+                                                    <Image url="@imagenes/lampara.png" />
+
+                                                </image>
+
+                                            </ImageView>
                                             <Label text="MÁS VENDIDO" visible="false" managed="false"
                                                    StackPane.alignment="TOP_LEFT">
                                                 <background>
@@ -1514,24 +1540,15 @@
                                             </Background>
                                         </background>
                                         <children>
-                                            <VBox alignment="CENTER" spacing="2.0">
-                                                <Label text="🔌">
-                                                    <font>
-                                                        <Font name="Segoe UI Emoji" size="38.0" />
-                                                    </font>
-                                                    <textFill>
-                                                        <Color red="0.0588" green="0.0902" blue="0.1647" />
-                                                    </textFill>
-                                                </Label>
-                                                <Label text="nodo">
-                                                    <font>
-                                                        <Font name="Segoe UI" size="9.0" />
-                                                    </font>
-                                                    <textFill>
-                                                        <Color red="0.3922" green="0.4549" blue="0.5451" />
-                                                    </textFill>
-                                                </Label>
-                                            </VBox>
+                                            <ImageView fitWidth="190.0" fitHeight="86.0" preserveRatio="true" smooth="true">
+
+                                                <image>
+
+                                                    <Image url="@imagenes/cargador.png" />
+
+                                                </image>
+
+                                            </ImageView>
                                             <Label text="MÁS VENDIDO" visible="false" managed="false"
                                                    StackPane.alignment="TOP_LEFT">
                                                 <background>
@@ -1701,24 +1718,15 @@
                                             </Background>
                                         </background>
                                         <children>
-                                            <VBox alignment="CENTER" spacing="2.0">
-                                                <Label text="🖥">
-                                                    <font>
-                                                        <Font name="Segoe UI Emoji" size="38.0" />
-                                                    </font>
-                                                    <textFill>
-                                                        <Color red="0.0588" green="0.0902" blue="0.1647" />
-                                                    </textFill>
-                                                </Label>
-                                                <Label text="nodo">
-                                                    <font>
-                                                        <Font name="Segoe UI" size="9.0" />
-                                                    </font>
-                                                    <textFill>
-                                                        <Color red="0.3922" green="0.4549" blue="0.5451" />
-                                                    </textFill>
-                                                </Label>
-                                            </VBox>
+                                            <ImageView fitWidth="190.0" fitHeight="86.0" preserveRatio="true" smooth="true">
+
+                                                <image>
+
+                                                    <Image url="@imagenes/monitor.png" />
+
+                                                </image>
+
+                                            </ImageView>
                                             <Label text="MÁS VENDIDO" visible="false" managed="false"
                                                    StackPane.alignment="TOP_LEFT">
                                                 <background>
@@ -1888,24 +1896,15 @@
                                             </Background>
                                         </background>
                                         <children>
-                                            <VBox alignment="CENTER" spacing="2.0">
-                                                <Label text="🎤">
-                                                    <font>
-                                                        <Font name="Segoe UI Emoji" size="38.0" />
-                                                    </font>
-                                                    <textFill>
-                                                        <Color red="0.0588" green="0.0902" blue="0.1647" />
-                                                    </textFill>
-                                                </Label>
-                                                <Label text="nodo">
-                                                    <font>
-                                                        <Font name="Segoe UI" size="9.0" />
-                                                    </font>
-                                                    <textFill>
-                                                        <Color red="0.3922" green="0.4549" blue="0.5451" />
-                                                    </textFill>
-                                                </Label>
-                                            </VBox>
+                                            <ImageView fitWidth="190.0" fitHeight="86.0" preserveRatio="true" smooth="true">
+
+                                                <image>
+
+                                                    <Image url="@imagenes/microfono.png" />
+
+                                                </image>
+
+                                            </ImageView>
                                             <Label text="MÁS VENDIDO" visible="false" managed="false"
                                                    StackPane.alignment="TOP_LEFT">
                                                 <background>
@@ -2075,24 +2074,15 @@
                                             </Background>
                                         </background>
                                         <children>
-                                            <VBox alignment="CENTER" spacing="2.0">
-                                                <Label text="🔋">
-                                                    <font>
-                                                        <Font name="Segoe UI Emoji" size="38.0" />
-                                                    </font>
-                                                    <textFill>
-                                                        <Color red="0.0588" green="0.0902" blue="0.1647" />
-                                                    </textFill>
-                                                </Label>
-                                                <Label text="nodo">
-                                                    <font>
-                                                        <Font name="Segoe UI" size="9.0" />
-                                                    </font>
-                                                    <textFill>
-                                                        <Color red="0.3922" green="0.4549" blue="0.5451" />
-                                                    </textFill>
-                                                </Label>
-                                            </VBox>
+                                            <ImageView fitWidth="190.0" fitHeight="86.0" preserveRatio="true" smooth="true">
+
+                                                <image>
+
+                                                    <Image url="@imagenes/bateria.png" />
+
+                                                </image>
+
+                                            </ImageView>
                                             <Label text="MÁS VENDIDO" visible="false" managed="false"
                                                    StackPane.alignment="TOP_LEFT">
                                                 <background>

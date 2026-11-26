@@ -1,15 +1,17 @@
 package com.nodo.tienda.controladores;
 
 import com.nodo.tienda.modelo.Producto;
+import com.nodo.tienda.util.Imagenes;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 
 
 public class RelacionadoControlador {
 
     @FXML
-    private Label icono;
+    private ImageView imagen;
 
     @FXML
     private Label categoria;
@@ -28,7 +30,7 @@ public class RelacionadoControlador {
         this.producto = producto;
         this.detalle = detalle;
 
-        icono.setText(producto.getIcono());
+        Imagenes.aplicar(imagen, producto);
         categoria.setText(producto.getCategoria().toUpperCase());
         nombre.setText(producto.getNombre());
         precio.setText(producto.getPrecioTexto());

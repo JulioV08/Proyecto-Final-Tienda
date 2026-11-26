@@ -118,14 +118,6 @@
                     <PasswordField fx:id="contrasena" maxWidth="Infinity" prefHeight="36.0"
                                    promptText="••••••••" />
                 </VBox>
-                <HBox alignment="CENTER_LEFT">
-                    <Region HBox.hgrow="ALWAYS" />
-                    <Hyperlink onAction="#onOlvidar" text="¿Olvidaste tu contraseña?">
-                        <textFill>
-                            <Color red="0.9373" green="0.2667" blue="0.2667" />
-                        </textFill>
-                    </Hyperlink>
-                </HBox>
                 <Label fx:id="mensaje" managed="false" visible="false" wrapText="true">
                     <font>
                         <Font name="Segoe UI" size="12.0" />

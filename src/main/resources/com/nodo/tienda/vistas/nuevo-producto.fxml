@@ -1,385 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Background?>
 <?import javafx.scene.layout.BackgroundFill?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.nodo.tienda.controladores.NuevoProductoControlador"
-            prefWidth="980.0" prefHeight="700.0">
+<VBox xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.nodo.tienda.controladores.NuevoProductoControlador"
+      prefWidth="980.0" prefHeight="700.0" spacing="12.0">
+    <padding>
+        <Insets top="22.0" right="36.0" bottom="22.0" left="36.0" />
+    </padding>
     <background>
         <Background>
             <fills>
                 <BackgroundFill>
                     <fill>
-                        <Color red="0.9725" green="0.9804" blue="0.9882" />
+                        <Color red="0.9333" green="0.9412" blue="0.9529" />
                     </fill>
                 </BackgroundFill>
             </fills>
         </Background>
     </background>
-    <top>
-        <HBox alignment="CENTER_LEFT" spacing="12.0">
-            <background>
-                <Background>
-                    <fills>
-                        <BackgroundFill>
-                            <fill>
-                                <Color red="0.0588" green="0.0902" blue="0.1647" />
-                            </fill>
-                        </BackgroundFill>
-                    </fills>
-                </Background>
-            </background>
-            <padding>
-                <Insets top="12.0" right="22.0" bottom="12.0" left="22.0" />
-            </padding>
-            <Label text="nodo">
-                <background>
-                    <Background>
-                        <fills>
-                            <BackgroundFill>
-                                <fill>
-                                    <Color red="0.9373" green="0.2667" blue="0.2667" />
-                                </fill>
-                            </BackgroundFill>
-                        </fills>
-                    </Background>
-                </background>
-                <padding>
-                    <Insets top="7.0" right="11.0" bottom="7.0" left="11.0" />
-                </padding>
-                <font>
-                    <Font name="Segoe UI Bold" size="15.0" />
-                </font>
-                <textFill>
-                    <Color red="1.0" green="1.0" blue="1.0" />
-                </textFill>
-            </Label>
-            <Label text="Registro de producto">
-                <font>
-                    <Font name="Segoe UI Bold" size="13.0" />
-                </font>
-                <textFill>
-                    <Color red="1.0" green="1.0" blue="1.0" />
-                </textFill>
-            </Label>
-            <Region HBox.hgrow="ALWAYS" />
-            <Label fx:id="usuario" text="Admin Nodo · Administrador">
-                <font>
-                    <Font name="Segoe UI" size="10.0" />
-                </font>
-                <textFill>
-                    <Color red="0.7608" green="0.7922" blue="0.8510" />
-                </textFill>
-            </Label>
-            <Button text="Volver al panel" onAction="#onVolver">
-                <background>
-                    <Background>
-                        <fills>
-                            <BackgroundFill>
-                                <fill>
-                                    <Color red="0.0588" green="0.0902" blue="0.1647" />
-                                </fill>
-                            </BackgroundFill>
-                        </fills>
-                    </Background>
-                </background>
-                <padding>
-                    <Insets top="0.0" right="0.0" bottom="0.0" left="0.0" />
-                </padding>
-                <font>
-                    <Font name="Segoe UI Bold" size="10.0" />
-                </font>
-                <textFill>
-                    <Color red="1.0" green="1.0" blue="1.0" />
-                </textFill>
-            </Button>
-            <Button text="Cerrar sesión" onAction="#onCerrarSesion">
-                <background>
-                    <Background>
-                        <fills>
-                            <BackgroundFill>
-                                <fill>
-                                    <Color red="0.0588" green="0.0902" blue="0.1647" />
-                                </fill>
-                            </BackgroundFill>
-                        </fills>
-                    </Background>
-                </background>
-                <padding>
-                    <Insets top="0.0" right="0.0" bottom="0.0" left="0.0" />
-                </padding>
-                <font>
-                    <Font name="Segoe UI Bold" size="10.0" />
-                </font>
-                <textFill>
-                    <Color red="1.0" green="1.0" blue="1.0" />
-                </textFill>
-            </Button>
-        </HBox>
-    </top>
-    <center>
-        <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
-            <background>
-                <Background>
-                    <fills>
-                        <BackgroundFill>
-                            <fill>
-                                <Color red="0.9725" green="0.9804" blue="0.9882" />
-                            </fill>
-                        </BackgroundFill>
-                    </fills>
-                </Background>
-            </background>
-            <VBox alignment="TOP_CENTER">
-                <padding>
-                    <Insets top="22.0" right="22.0" bottom="22.0" left="22.0" />
-                </padding>
-                <VBox maxWidth="680.0" prefWidth="680.0" spacing="12.0">
-                    <background>
-                        <Background>
-                            <fills>
-                                <BackgroundFill>
-                                    <fill>
-                                        <Color red="1.0" green="1.0" blue="1.0" />
-                                    </fill>
-                                </BackgroundFill>
-                            </fills>
-                        </Background>
-                    </background>
-                    <effect>
-                        <DropShadow radius="8.0" offsetY="2.0">
-                            <color>
-                                <Color red="0.0" green="0.0" blue="0.0" opacity="0.08" />
-                            </color>
-                        </DropShadow>
-                    </effect>
-                    <padding>
-                        <Insets top="26.0" right="26.0" bottom="26.0" left="26.0" />
-                    </padding>
-                    <HBox alignment="CENTER_LEFT" spacing="12.0">
-                        <VBox spacing="4.0">
-                            <Label text="Registrar producto">
-                                <font>
-                                    <Font name="Segoe UI Bold" size="22.0" />
-                                </font>
-                                <textFill>
-                                    <Color red="0.0588" green="0.0902" blue="0.1647" />
-                                </textFill>
-                            </Label>
-                            <Label text="Completa los datos; el ID se asigna automáticamente.">
-                                <font>
-                                    <Font name="Segoe UI" size="11.0" />
-                                </font>
-                                <textFill>
-                                    <Color red="0.3922" green="0.4549" blue="0.5451" />
-                                </textFill>
-                            </Label>
-                        </VBox>
-                        <Region HBox.hgrow="ALWAYS" />
-                        <Label text="NUEVO PRODUCTO">
-                            <background>
-                                <Background>
-                                    <fills>
-                                        <BackgroundFill>
-                                            <fill>
-                                                <Color red="0.9373" green="0.2667" blue="0.2667" />
-                                            </fill>
-                                        </BackgroundFill>
-                                    </fills>
-                                </Background>
-                            </background>
-                            <padding>
-                                <Insets top="5.0" right="9.0" bottom="5.0" left="9.0" />
-                            </padding>
-                            <font>
-                                <Font name="Segoe UI Bold" size="8.0" />
-                            </font>
-                            <textFill>
-                                <Color red="1.0" green="1.0" blue="1.0" />
-                            </textFill>
-                        </Label>
-                    </HBox>
-                    <HBox spacing="12.0">
-                        <VBox spacing="6.0" HBox.hgrow="ALWAYS">
-                            <Label text="Nombre del producto">
-                                <font>
-                                    <Font name="Segoe UI Bold" size="11.0" />
-                                </font>
-                                <textFill>
-                                    <Color red="0.2157" green="0.2549" blue="0.3176" />
-                                </textFill>
-                            </Label>
-                            <TextField fx:id="nombre" maxWidth="Infinity" prefHeight="36.0"
-                                       promptText="Auriculares Aura" text="Auriculares Aura" />
-                        </VBox>
-                        <VBox spacing="6.0" prefWidth="220.0">
-                            <Label text="Categoría">
-                                <font>
-                                    <Font name="Segoe UI Bold" size="11.0" />
-                                </font>
-                                <textFill>
-                                    <Color red="0.2157" green="0.2549" blue="0.3176" />
-                                </textFill>
-                            </Label>
-                            <ComboBox fx:id="categoria" maxWidth="Infinity" prefHeight="36.0"
-                                      promptText="Selecciona una categoría">
-                                <items>
-                                    <FXCollections fx:factory="observableArrayList">
-                                        <String fx:value="Audio" />
-                                        <String fx:value="Escritorio" />
-                                        <String fx:value="Iluminación" />
-                                        <String fx:value="Accesorios" />
-                                    </FXCollections>
-                                </items>
-                                <value>
-                                    <String fx:value="Audio" />
-                                </value>
-                            </ComboBox>
-                        </VBox>
-                    </HBox>
-                    <HBox spacing="12.0">
-                        <VBox spacing="6.0" HBox.hgrow="ALWAYS">
-                            <Label text="Precio (COP)">
-                                <font>
-                                    <Font name="Segoe UI Bold" size="11.0" />
-                                </font>
-                                <textFill>
-                                    <Color red="0.2157" green="0.2549" blue="0.3176" />
-                                </textFill>
-                            </Label>
-                            <TextField fx:id="precio" maxWidth="Infinity" prefHeight="36.0"
-                                       promptText="89900" text="89900" />
-                        </VBox>
-                        <VBox spacing="6.0" HBox.hgrow="ALWAYS">
-                            <Label text="Stock inicial">
-                                <font>
-                                    <Font name="Segoe UI Bold" size="11.0" />
-                                </font>
-                                <textFill>
-                                    <Color red="0.2157" green="0.2549" blue="0.3176" />
-                                </textFill>
-                            </Label>
-                            <TextField fx:id="stock" maxWidth="Infinity" prefHeight="36.0"
-                                       promptText="12" text="12" />
-                        </VBox>
-                        <VBox spacing="6.0" prefWidth="130.0">
-                            <Label text="Ícono">
-                                <font>
-                                    <Font name="Segoe UI Bold" size="11.0" />
-                                </font>
-                                <textFill>
-                                    <Color red="0.2157" green="0.2549" blue="0.3176" />
-                                </textFill>
-                            </Label>
-                            <TextField fx:id="icono" maxWidth="Infinity" prefHeight="36.0"
-                                       promptText="🎧" text="🎧" />
-                        </VBox>
-                    </HBox>
-                    <VBox spacing="6.0">
-                        <Label text="Descripción">
-                            <font>
-                                <Font name="Segoe UI Bold" size="11.0" />
-                            </font>
-                            <textFill>
-                                <Color red="0.2157" green="0.2549" blue="0.3176" />
-                            </textFill>
-                        </Label>
-                        <TextArea fx:id="descripcion" maxWidth="Infinity" prefRowCount="3"
-                                  prefHeight="82.0" wrapText="true"
-                                  promptText="Describe el producto y sus características."
-                                  text="Sonido envolvente, almohadillas suaves y hasta 24 horas de batería." />
-                    </VBox>
-                    <CheckBox fx:id="destacado" selected="true"
-                              text="Destacar este producto en el catálogo">
-                        <font>
-                            <Font name="Segoe UI" size="11.0" />
-                        </font>
-                        <textFill>
-                            <Color red="0.2157" green="0.2549" blue="0.3176" />
-                        </textFill>
-                    </CheckBox>
-                    <HBox spacing="12.0">
-                        <Button defaultButton="true" text="Registrar producto"
-                                onAction="#onRegistrar" maxWidth="Infinity"
-                                prefHeight="40.0" HBox.hgrow="ALWAYS">
-                            <background>
-                                <Background>
-                                    <fills>
-                                        <BackgroundFill>
-                                            <fill>
-                                                <Color red="0.9373" green="0.2667" blue="0.2667" />
-                                            </fill>
-                                        </BackgroundFill>
-                                    </fills>
-                                </Background>
-                            </background>
-                            <font>
-                                <Font name="Segoe UI Bold" size="12.0" />
-                            </font>
-                            <textFill>
-                                <Color red="1.0" green="1.0" blue="1.0" />
-                            </textFill>
-                        </Button>
-                        <Button text="Limpiar" onAction="#onLimpiar" prefHeight="40.0">
-                            <background>
-                                <Background>
-                                    <fills>
-                                        <BackgroundFill>
-                                            <fill>
-                                                <Color red="0.9373" green="0.9451" blue="0.9569" />
-                                            </fill>
-                                        </BackgroundFill>
-                                    </fills>
-                                </Background>
-                            </background>
-                            <padding>
-                                <Insets top="8.0" right="18.0" bottom="8.0" left="18.0" />
-                            </padding>
-                            <font>
-                                <Font name="Segoe UI" size="12.0" />
-                            </font>
-                            <textFill>
-                                <Color red="0.0588" green="0.0902" blue="0.1647" />
-                            </textFill>
-                        </Button>
-                    </HBox>
-                    <Label fx:id="mensaje" wrapText="true"
-                           text="Completa los datos del producto. El ID se asigna automáticamente.">
-                        <font>
-                            <Font name="Segoe UI" size="11.0" />
-                        </font>
-                        <textFill>
-                            <Color red="0.3922" green="0.4549" blue="0.5451" />
-                        </textFill>
-                    </Label>
-                    <Label text="Los productos se guardan en memoria durante la ejecución.">
-                        <font>
-                            <Font name="Segoe UI" size="9.0" />
-                        </font>
-                        <textFill>
-                            <Color red="0.6118" green="0.6392" blue="0.6863" />
-                        </textFill>
-                    </Label>
-                </VBox>
-            </VBox>
-        </ScrollPane>
-    </center>
-</BorderPane>
+    <HBox alignment="CENTER_LEFT" spacing="10.0">
+        <Label text="nodo">
+            <font>
+                <Font name="Segoe UI Bold" size="20.0" />
+            </font>
+        </Label>
+        <Region HBox.hgrow="ALWAYS" />
+        <Label fx:id="usuario" text="Administrador" />
+        <Button text="Volver al panel" onAction="#onVolver" />
+        <Button text="Cerrar sesión" onAction="#onCerrarSesion" />
+    </HBox>
+    <Label text="Registrar producto nuevo">
+        <font>
+            <Font name="Segoe UI Bold" size="26.0" />
+        </font>
+    </Label>
+    <Label text="Completa los datos y elige una imagen para el producto.">
+        <font>
+            <Font name="Segoe UI" size="12.0" />
+        </font>
+    </Label>
+    <HBox spacing="22.0" VBox.vgrow="ALWAYS">
+        <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+            <TextField fx:id="nombre" promptText="Nombre del producto" />
+            <ComboBox fx:id="categoria" prefWidth="380.0" promptText="Categoría" />
+            <HBox spacing="8.0">
+                <TextField fx:id="precio" promptText="Precio" HBox.hgrow="ALWAYS" />
+                <TextField fx:id="stock" promptText="Stock" HBox.hgrow="ALWAYS" />
+            </HBox>
+            <TextField fx:id="icono" promptText="Ícono (opcional)" />
+            <TextArea fx:id="descripcion" promptText="Descripción" prefRowCount="4" wrapText="true" />
+            <CheckBox fx:id="destacado" text="Producto destacado" />
+            <HBox spacing="8.0">
+                <Button text="Registrar producto" onAction="#onRegistrar">
+                    <font>
+                        <Font name="Segoe UI Bold" size="11.0" />
+                    </font>
+                </Button>
+                <Button text="Limpiar" onAction="#onLimpiar" />
+            </HBox>
+        </VBox>
+        <VBox alignment="TOP_CENTER" spacing="8.0" prefWidth="220.0">
+            <ImageView fx:id="vistaImagen" fitWidth="190.0" fitHeight="190.0"
+                       preserveRatio="true" smooth="true" />
+            <Button text="Elegir imagen" onAction="#onElegirImagen" />
+            <Label fx:id="rutaImagen" text="Sin imagen seleccionada" wrapText="true" />
+        </VBox>
+    </HBox>
+    <Label fx:id="mensaje" wrapText="true" />
+</VBox>
